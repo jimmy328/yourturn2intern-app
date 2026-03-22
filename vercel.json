@@ -1,5 +1,18 @@
 {
   "version": 2,
-  "buildCommand": "echo 'No build needed for static site'",
-  "public": true
+  "routes": [
+    {
+      "src": "/index.html",
+      "destination": "/index.html"
+    },
+    {
+      "src": "/(.*)\\.html",
+      "destination": "/$1.html"
+    },
+    {
+      "src": "/(.*)",
+      "destination": "/index.html",
+      "status": 200
+    }
+  ]
 }
