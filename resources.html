@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ───────────────────────────────────────────── */
+    :root {
+      --blue:       #1D72D4;
+      --blue-dark:  #155DB0;
+      --blue-light: #D6E8FA;
+      --coral:      #E8625C;
+      --coral-dark: #C94F49;
+      --coral-light:#FCDBD9;
+      --ink:        #111827;
+      --ink-mid:    #374151;
+      --ink-soft:   #6B7280;
+      --surface:    #FFFFFF;
+      --off:        #F5F6F8;
+      --border:     #E2E7EE;
+      --navy:       #1a2744;
+      --navy-light: #243059;
+
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --shadow-float: 0 8px 32px rgba(26,37,64,0.12), 0 2px 8px rgba(26,37,64,0.06);
+
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    /* ── Reset ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: #FFFFFF;
+      background-image: url('backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .container {
+      width: min(1120px, 100%);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    .nav--hidden { transform: translateY(-100%); }
+    .nav__inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__link--active { color: var(--blue); font-weight: 700; }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+      transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+      box-shadow: 0 2px 8px rgba(232,98,92,0.28);
+    }
+    .nav__cta:hover { background: var(--coral-dark); transform: translateY(-1px); }
+
+    /* ── Page header ─────────────────────────────────────────── */
+    .page-header {
+      padding-block: 48px 36px;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+    .page-header__label {
+      font-family: var(--font-display);
+      font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 10px;
+    }
+    .page-header__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 900; line-height: 1.15;
+      color: var(--ink); margin-bottom: 10px;
+    }
+    .page-header__heading em { color: var(--blue); font-style: normal; }
+    .page-header__sub {
+      font-size: 1rem; color: var(--ink-soft); max-width: 560px;
+    }
+
+    /* ── Section wrapper ─────────────────────────────────────── */
+    .section {
+      padding-block: 56px;
+    }
+    .section--shaded {
+      background: var(--off);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .section--dark {
+      background: var(--navy);
+      border-top: none;
+      border-bottom: none;
+    }
+    .section__label {
+      font-family: var(--font-display);
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 8px;
+    }
+    .section__label--light { color: #7eaadf; }
+    .section__title {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 28px;
+    }
+    .section__title--light { color: #fff; }
+
+    /* ── Guide (featured) ────────────────────────────────────── */
+    .guide {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 40px;
+      align-items: start;
+    }
+    .guide__main { position: relative; }
+    .guide__img-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--blue-light);
+    }
+    .guide__img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .guide__img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #d0e8ff 0%, #b8d4f5 50%, #c5ddfb 100%);
+      font-size: 5rem;
+    }
+    .guide__category {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue); margin-top: 20px; margin-bottom: 8px;
+    }
+    .guide__headline {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--ink); line-height: 1.25;
+      margin-bottom: 10px;
+      transition: color 0.18s;
+    }
+    .guide__headline:hover { color: var(--blue); }
+    .guide__byline {
+      font-size: 0.82rem; color: var(--ink-soft);
+    }
+
+    /* Guide sidebar */
+    .guide__sidebar { border-top: 3px solid var(--blue); padding-top: 4px; }
+    .guide__sidebar-title {
+      font-family: var(--font-display);
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--ink-soft); padding: 12px 0 8px;
+    }
+    .guide__list { display: flex; flex-direction: column; }
+    .guide__list-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .guide__list-item:last-child { border-bottom: none; }
+    .guide__list-num {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 900;
+      color: var(--border); line-height: 1.2;
+      flex-shrink: 0; width: 20px;
+    }
+    .guide__list-text {
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--ink-mid); line-height: 1.4;
+      transition: color 0.18s;
+    }
+    .guide__list-item:hover .guide__list-text { color: var(--blue); }
+    .guide__list-item:hover .guide__list-num { color: var(--blue-light); }
+
+    /* ── Topic pills ─────────────────────────────────────────── */
+    .topics { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .topic-pill {
+      font-family: var(--font-display);
+      font-size: 0.8rem; font-weight: 700;
+      padding: 7px 16px; border-radius: 100px;
+      border: 1.5px solid var(--border);
+      color: var(--ink-mid); background: var(--surface);
+      cursor: pointer; transition: border-color 0.18s, color 0.18s, background 0.18s;
+    }
+    .topic-pill:hover,
+    .topic-pill--active {
+      border-color: var(--blue); color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* Key terms card carousel */
+    .terms-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .term-card {
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+    }
+    .term-card__word {
+      font-family: var(--font-display);
+      font-size: 1.75rem; font-weight: 900;
+      color: #fff; margin-bottom: 6px;
+    }
+    .term-card__type {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #7eaadf; margin-bottom: 12px;
+    }
+    .term-card__def {
+      font-size: 0.9rem; color: #c8d8ed; line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .term-card__link {
+      font-size: 0.85rem; font-weight: 600; color: #7eaadf;
+      border-bottom: 1px solid rgba(126,170,223,0.35);
+      padding-bottom: 2px;
+      transition: color 0.18s, border-color 0.18s;
+      display: inline-block;
+    }
+    .term-card__link:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+    .term-card__nav {
+      display: flex; gap: 8px; margin-top: 20px;
+    }
+    .term-card__btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.18s, border-color 0.18s;
+    }
+    .term-card__btn:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.4); }
+
+    .term-pills { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+    .term-pill {
+      font-family: var(--font-display);
+      font-size: 0.78rem; font-weight: 700;
+      padding: 8px 16px; border-radius: var(--radius-sm);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      color: #c8d8ed; cursor: pointer;
+      transition: border-color 0.18s, color 0.18s, background 0.18s;
+    }
+    .term-pill:hover,
+    .term-pill--active {
+      border-color: rgba(126,170,223,0.6);
+      color: #fff; background: rgba(255,255,255,0.08);
+    }
+
+    /* ── Article grid ────────────────────────────────────────── */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .article-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .article-card:hover {
+      box-shadow: var(--shadow-float);
+      transform: translateY(-3px);
+    }
+    .article-card__img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover;
+      background: var(--off);
+    }
+    .article-card__img-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+    .article-card__body { padding: 18px 20px 22px; }
+    .article-card__cat {
+      font-family: var(--font-display);
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 8px;
+      display: block;
+    }
+    .article-card__title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 800;
+      color: var(--ink); line-height: 1.35;
+      margin-bottom: 8px;
+      transition: color 0.18s;
+    }
+    .article-card:hover .article-card__title { color: var(--blue); }
+    .article-card__byline {
+      font-size: 0.78rem; color: var(--ink-soft);
+    }
+
+    /* ── List articles ───────────────────────────────────────── */
+    .articles-list {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .list-article {
+      display: flex; gap: 20px; padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .list-article:first-child { border-top: 1px solid var(--border); }
+    .list-article__img {
+      width: 120px; height: 80px; object-fit: cover;
+      border-radius: var(--radius-sm); flex-shrink: 0;
+      background: var(--off);
+    }
+    .list-article__img-placeholder {
+      width: 120px; height: 80px; border-radius: var(--radius-sm);
+      flex-shrink: 0; display: flex; align-items: center;
+      justify-content: center; font-size: 1.8rem;
+    }
+    .list-article__cat {
+      font-family: var(--font-display);
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 5px; display: block;
+    }
+    .list-article__title {
+      font-family: var(--font-display);
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--ink); line-height: 1.35; margin-bottom: 4px;
+      transition: color 0.18s;
+    }
+    .list-article:hover .list-article__title { color: var(--blue); }
+    .list-article__byline { font-size: 0.78rem; color: var(--ink-soft); }
+
+    /* ── Two-column layout for latest articles ───────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────────── */
+    .faq { display: flex; flex-direction: column; }
+    .faq__item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq__item:first-child { border-top: 1px solid var(--border); }
+    .faq__question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; cursor: pointer; gap: 16px;
+    }
+    .faq__q-text {
+      font-size: 1rem; font-weight: 500; color: var(--ink);
+      transition: color 0.18s;
+    }
+    .faq__item.open .faq__q-text { color: var(--blue); }
+    .faq__chevron {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: border-color 0.18s, transform 0.25s;
+      color: var(--ink-soft); font-size: 0.7rem;
+    }
+    .faq__item.open .faq__chevron {
+      border-color: var(--blue); color: var(--blue);
+      transform: rotate(180deg);
+    }
+    .faq__answer {
+      font-size: 0.92rem; color: var(--ink-mid);
+      line-height: 1.7;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq__item.open .faq__answer {
+      max-height: 300px;
+      padding-bottom: 20px;
+    }
+
+    /* ── Load more ───────────────────────────────────────────── */
+    .load-more-wrap { text-align: center; margin-top: 40px; }
+    .btn-load-more {
+      font-family: var(--font-display);
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--blue); background: var(--blue-light);
+      padding: 12px 32px; border-radius: var(--radius-sm);
+      border: 1.5px solid var(--blue-light);
+      transition: background 0.18s, border-color 0.18s;
+    }
+    .btn-load-more:hover {
+      background: #c0d9f5; border-color: #a8c9f0;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .footer {
+      background: var(--navy); color: rgba(255,255,255,0.65);
+      padding-block: 40px;
+      font-size: 0.85rem;
+    }
+    .footer__inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer__brand {
+      font-family: var(--font-display);
+      font-weight: 800; color: #fff; font-size: 1rem;
+    }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link { transition: color 0.18s; }
+    .footer__link:hover { color: #fff; }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 840px) {
+      .guide { grid-template-columns: 1fr; }
+      .guide__sidebar { display: none; }
+      .articles-grid { grid-template-columns: 1fr 1fr; }
+      .terms-layout { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .nav__links { display: none; }
+    }
+    @media (max-width: 540px) {
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <header class="nav" id="main-nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="/opportunities.html" class="nav__link">Opportunities</a>
+        <a href="/resources.html"     class="nav__link nav__link--active">Resources</a>
+        <a href="/login.html"         class="nav__cta">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Page header ───────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header__label">Learn</div>
+      <h1 class="page-header__heading">Civic <em>Resources</em></h1>
+      <p class="page-header__sub">Guides, tips, and key concepts to help Long Island students launch their civic careers with confidence.</p>
+    </div>
+  </div>
+
+  <!-- ── Guide (Beginner's Guide) ─────────────────────────────── -->
+  <section class="section" style="background:#ffffff;">
+    <div class="container">
+      <div class="section__label">Getting Started</div>
+      <div class="section__title">A Beginner's Guide to Civic Internships</div>
+      <div class="guide">
+
+        <!-- Featured article -->
+        <div class="guide__main">
+          <div class="guide__img-wrap">
+            <div class="guide__img-placeholder">🏛️</div>
+          </div>
+          <a class="guide__category" href="#">Civic Engagement</a>
+          <div class="guide__headline">What Is a Civic Internship — and Why Does It Matter?</div>
+          <div class="guide__byline">By YourTurn2Intern Staff</div>
+        </div>
+
+        <!-- Sidebar list -->
+        <aside class="guide__sidebar">
+          <div class="guide__sidebar-title">More in this guide</div>
+          <ul class="guide__list">
+            <li class="guide__list-item">
+              <span class="guide__list-num">1</span>
+              <span class="guide__list-text">How to Write a Strong Intern Application</span>
+            </li>
+            <li class="guide__list-item">
+              <span class="guide__list-num">2</span>
+              <span class="guide__list-text">What to Expect During a Campaign Internship</span>
+            </li>
+            <li class="guide__list-item">
+              <span class="guide__list-num">3</span>
+              <span class="guide__list-text">Navigating Government Office Internships</span>
+            </li>
+            <li class="guide__list-item">
+              <span class="guide__list-num">4</span>
+              <span class="guide__list-text">Turning an Internship Into a Full-Time Civic Role</span>
+            </li>
+            <li class="guide__list-item">
+              <span class="guide__list-num">5</span>
+              <span class="guide__list-text">How to List Civic Experience on Your Resume</span>
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────── -->
+  <section class="section section--shaded">
+    <div class="container">
+      <div class="section__label">Common Questions</div>
+      <div class="section__title">Frequently Asked Questions</div>
+      <div class="faq" id="faq">
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            <span class="faq__q-text">Do I need experience to apply for a civic internship?</span>
+            <span class="faq__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq__answer">
+            No — most civic internships on YourTurn2Intern are specifically designed for students with little to no prior experience. Employers in government and nonprofits understand that passion, reliability, and curiosity matter more than a long résumé when you're just starting out.
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            <span class="faq__q-text">Are these internships paid?</span>
+            <span class="faq__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq__answer">
+            It varies. Government internships are often paid; campaign and nonprofit roles may be volunteer or stipend-based. Each listing on the Opportunities page clearly marks whether the role is paid, unpaid, or includes a stipend — so you can filter by what works for you.
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            <span class="faq__q-text">How do I find internships near me?</span>
+            <span class="faq__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq__answer">
+            Use the Opportunities page and filter by County or Town/ZIP. All listings are based on Long Island, so you'll always be browsing local roles — whether you're in Nassau, Suffolk, or a specific town.
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            <span class="faq__q-text">What types of organizations post here?</span>
+            <span class="faq__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq__answer">
+            We host listings from local government offices (town halls, county agencies), political campaigns, nonprofits focused on civic issues, and advocacy organizations. Every organization is vetted before their listings go live.
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            <span class="faq__q-text">When should I start applying?</span>
+            <span class="faq__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq__answer">
+            As early as possible. Most summer internships begin accepting applications in February–March. Campaign roles often open close to election cycles. Setting up a profile and bookmarking listings now means you'll be ready to apply the moment a role goes live.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Key Terms (dark navy) ─────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section__label section__label--light">Glossary</div>
+      <div class="section__title section__title--light" style="margin-bottom: 32px;">Key Terms to Know</div>
+      <div class="terms-layout">
+
+        <!-- Term card -->
+        <div>
+          <div class="term-card" id="term-card">
+            <div class="term-card__word" id="term-word">Constituent</div>
+            <div class="term-card__type">Definition</div>
+            <div class="term-card__def" id="term-def">
+              A constituent is a resident or citizen whom an elected official represents. Understanding who constituents are — and what they need — is central to almost every role in civic government, from intern to legislator.
+            </div>
+            <a href="#" class="term-card__link">Learn More</a>
+            <div class="term-card__nav">
+              <button class="term-card__btn" id="term-prev" aria-label="Previous term">&#8592;</button>
+              <button class="term-card__btn" id="term-next" aria-label="Next term">&#8594;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Term pills -->
+        <div class="term-pills" id="term-pills">
+          <button class="term-pill term-pill--active" data-idx="0">CONSTITUENT</button>
+          <button class="term-pill" data-idx="1">CAUCUS</button>
+          <button class="term-pill" data-idx="2">CIVIC ENGAGEMENT</button>
+          <button class="term-pill" data-idx="3">GRASSROOTS</button>
+          <button class="term-pill" data-idx="4">ORDINANCE</button>
+          <button class="term-pill" data-idx="5">LOBBYING</button>
+          <button class="term-pill" data-idx="6">CANVASSING</button>
+          <button class="term-pill" data-idx="7">BALLOT MEASURE</button>
+          <button class="term-pill" data-idx="8">TOWN BOARD</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Latest Articles ───────────────────────────────────────── -->
+  <section class="section" style="background:#ffffff;">
+    <div class="container">
+      <div class="section__label">Latest</div>
+      <div class="section__title">Browse by Topic</div>
+
+      <!-- Topic filters -->
+      <div class="topics">
+        <button class="topic-pill topic-pill--active">All</button>
+        <button class="topic-pill">Campaigns</button>
+        <button class="topic-pill">Government</button>
+        <button class="topic-pill">Nonprofits</button>
+        <button class="topic-pill">Résumés & Applications</button>
+        <button class="topic-pill">Interviews</button>
+        <button class="topic-pill">Student Rights</button>
+        <button class="topic-pill">Networking</button>
+      </div>
+
+      <!-- Two-column: grid left, list right -->
+      <div class="two-col">
+
+        <!-- Main article grid -->
+        <div>
+          <div class="articles-grid" id="articles-grid">
+
+            <div class="article-card">
+              <div class="article-card__img-placeholder" style="background:linear-gradient(135deg,#d0e8ff,#b8d4f5);">📋</div>
+              <div class="article-card__body">
+                <span class="article-card__cat">Résumés</span>
+                <div class="article-card__title">How to Write a Résumé with Zero Work Experience</div>
+                <div class="article-card__byline">By Editorial Staff</div>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <div class="article-card__img-placeholder" style="background:linear-gradient(135deg,#ffe0dc,#ffc5bf);">🗳️</div>
+              <div class="article-card__body">
+                <span class="article-card__cat">Campaigns</span>
+                <div class="article-card__title">What Does a Campaign Intern Actually Do?</div>
+                <div class="article-card__byline">By Maya Torres</div>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <div class="article-card__img-placeholder" style="background:linear-gradient(135deg,#d4f5e2,#b5eacc);">🤝</div>
+              <div class="article-card__body">
+                <span class="article-card__cat">Nonprofits</span>
+                <div class="article-card__title">5 Long Island Nonprofits That Are Shaping Civic Life</div>
+                <div class="article-card__byline">By James Okafor</div>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <div class="article-card__img-placeholder" style="background:linear-gradient(135deg,#fffacc,#fff0a0);">🎤</div>
+              <div class="article-card__body">
+                <span class="article-card__cat">Interviews</span>
+                <div class="article-card__title">How to Prepare for a Government Office Interview</div>
+                <div class="article-card__byline">By Rachel Kim</div>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <div class="article-card__img-placeholder" style="background:linear-gradient(135deg,#e8d5ff,#d0b0fa);">🌐</div>
+              <div class="article-card__body">
+                <span class="article-card__cat">Networking</span>
+                <div class="article-card__title">Building Your Civic Network Before You Graduate</div>
+                <div class="article-card__byline">By Sofia Reyes</div>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <div class="article-card__img-placeholder" style="background:linear-gradient(135deg,#d0f0ff,#a8e0f8);">📜</div>
+              <div class="article-card__body">
+                <span class="article-card__cat">Student Rights</span>
+                <div class="article-card__title">Know Your Rights as a Student Intern in New York</div>
+                <div class="article-card__byline">By Legal Aid LI</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="load-more-wrap">
+            <button class="btn-load-more">Load More Articles</button>
+          </div>
+        </div>
+
+        <!-- Sidebar: list articles -->
+        <aside>
+          <div style="font-family:var(--font-display);font-size:0.7rem;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:0;border-top:3px solid var(--coral);padding-top:12px;">Most Read</div>
+          <div class="articles-list">
+
+            <div class="list-article">
+              <div class="list-article__img-placeholder" style="background:linear-gradient(135deg,#d0e8ff,#b8d4f5);">🏛️</div>
+              <div>
+                <span class="list-article__cat">Government</span>
+                <div class="list-article__title">How Town Boards Work — A Student's Guide</div>
+                <div class="list-article__byline">By Priya Nair</div>
+              </div>
+            </div>
+
+            <div class="list-article">
+              <div class="list-article__img-placeholder" style="background:linear-gradient(135deg,#ffe0dc,#ffc5bf);">📬</div>
+              <div>
+                <span class="list-article__cat">Applications</span>
+                <div class="list-article__title">Cover Letter Templates That Actually Work for Civic Roles</div>
+                <div class="list-article__byline">By Editorial Staff</div>
+              </div>
+            </div>
+
+            <div class="list-article">
+              <div class="list-article__img-placeholder" style="background:linear-gradient(135deg,#d4f5e2,#b5eacc);">📊</div>
+              <div>
+                <span class="list-article__cat">Campaigns</span>
+                <div class="list-article__title">Data and Democracy: How Interns Use Analytics on Campaigns</div>
+                <div class="list-article__byline">By Marcus Webb</div>
+              </div>
+            </div>
+
+            <div class="list-article">
+              <div class="list-article__img-placeholder" style="background:linear-gradient(135deg,#fffacc,#fff0a0);">🎓</div>
+              <div>
+                <span class="list-article__cat">Careers</span>
+                <div class="list-article__title">From Intern to Elected: Long Island Success Stories</div>
+                <div class="list-article__byline">By Isabel Chung</div>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">YourTurn2Intern</div>
+      <div class="footer__links">
+        <a href="/opportunities.html" class="footer__link">Opportunities</a>
+        <a href="/resources.html"     class="footer__link">Resources</a>
+        <a href="#"                   class="footer__link">Contact</a>
+      </div>
+      <div>© 2025 YourTurn2Intern. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Nav hide on scroll ───────────────────────────────────── */
+    (function () {
+      const nav = document.getElementById('main-nav');
+      let lastY = 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        nav.classList.toggle('nav--hidden', y > lastY && y > 80);
+        lastY = y;
+      }, { passive: true });
+    })();
+
+    /* ── FAQ accordion ───────────────────────────────────────── */
+    document.getElementById('faq').addEventListener('click', e => {
+      const btn = e.target.closest('.faq__question');
+      if (!btn) return;
+      const item = btn.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq__item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+      });
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    /* ── Key Terms carousel ──────────────────────────────────── */
+    const terms = [
+      {
+        word: 'Constituent',
+        def: 'A constituent is a resident or citizen whom an elected official represents. Understanding who constituents are — and what they need — is central to almost every role in civic government, from intern to legislator.'
+      },
+      {
+        word: 'Caucus',
+        def: 'A caucus is a meeting of members of a legislative body who are members of a particular political party. Caucuses allow members to coordinate votes and develop party positions on legislation.'
+      },
+      {
+        word: 'Civic Engagement',
+        def: 'Civic engagement refers to actions taken by individuals to participate in the life of their community — from voting and volunteering to attending town halls or running for office.'
+      },
+      {
+        word: 'Grassroots',
+        def: 'A grassroots campaign or movement is organized and driven by ordinary community members rather than top-level leadership. Grassroots organizing is a core skill in many political internships.'
+      },
+      {
+        word: 'Ordinance',
+        def: 'An ordinance is a law or regulation enacted by a local government such as a town, city, or county. Ordinances cover everything from zoning rules to noise restrictions.'
+      },
+      {
+        word: 'Lobbying',
+        def: 'Lobbying is the act of attempting to influence decisions made by government officials, typically legislators. Lobbyists represent organizations, businesses, or causes and advocate for specific policies.'
+      },
+      {
+        word: 'Canvassing',
+        def: 'Canvassing is the process of going door-to-door to speak with voters or community members — gathering information, sharing a candidate\'s platform, or encouraging civic participation.'
+      },
+      {
+        word: 'Ballot Measure',
+        def: 'A ballot measure is a proposal placed before voters to decide on a specific policy question — such as a bond issue, a constitutional amendment, or a local regulation change.'
+      },
+      {
+        word: 'Town Board',
+        def: 'A town board is the governing body of a township, typically made up of elected supervisors and council members. Town boards oversee local services, budgets, and zoning decisions.'
+      }
+    ];
+
+    let currentTerm = 0;
+
+    function showTerm(idx) {
+      currentTerm = (idx + terms.length) % terms.length;
+      document.getElementById('term-word').textContent = terms[currentTerm].word;
+      document.getElementById('term-def').textContent  = terms[currentTerm].def;
+      // Update pills
+      document.querySelectorAll('#term-pills .term-pill').forEach((pill, i) => {
+        pill.classList.toggle('term-pill--active', i === currentTerm);
+      });
+    }
+
+    document.getElementById('term-prev').addEventListener('click', () => showTerm(currentTerm - 1));
+    document.getElementById('term-next').addEventListener('click', () => showTerm(currentTerm + 1));
+    document.getElementById('term-pills').addEventListener('click', e => {
+      const pill = e.target.closest('.term-pill');
+      if (!pill) return;
+      showTerm(parseInt(pill.dataset.idx, 10));
+    });
+
+    /* ── Topic pill filter (UI only — wires to Supabase later) ── */
+    document.querySelectorAll('.topic-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('topic-pill--active'));
+        pill.classList.add('topic-pill--active');
+      });
+    });
+  </script>
+
+</body>
+</html>

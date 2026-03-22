@@ -1,0 +1,17 @@
+{
+  "name": "yourturn2intern",
+  "version": "1.0.0",
+  "description": "Static HTML internship opportunities site",
+  "type": "module",
+  "main": "serve.mjs",
+  "scripts": {
+    "start": "node serve.mjs",
+    "dev": "node serve.mjs"
+  },
+  "keywords": [
+    "internship",
+    "opportunities"
+  ],
+  "author": "",
+  "license": "MIT"
+}

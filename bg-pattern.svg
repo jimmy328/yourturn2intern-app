@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="90">
+  <g fill="rgb(150,180,215)" stroke="rgb(150,180,215)" opacity="0.23" stroke-linecap="round" stroke-linejoin="round">
+
+    <!--
+      Grid: 4 cols × 3 rows, 30px spacing, offset 15px from edges.
+      Positions: (15,15) (45,15) (75,15) (105,15)
+                 (15,45) (45,45) (75,45) (105,45)
+                 (15,75) (45,75) (75,75) (105,75)
+    -->
+
+    <!-- Row 1 -->
+    <!-- (15,15) long diagonal line -->
+    <line x1="2" y1="28" x2="28" y2="2" stroke-width="1" fill="none"/>
+
+    <!-- (45,15) open circle -->
+    <circle cx="45" cy="15" r="4" fill="none" stroke-width="1"/>
+
+    <!-- (75,15) short diagonal line, centered -->
+    <line x1="69" y1="21" x2="81" y2="9" stroke-width="1" fill="none"/>
+
+    <!-- (105,15) tiny dot -->
+    <circle cx="105" cy="15" r="0.8" stroke="none"/>
+
+    <!-- Row 2 -->
+    <!-- (15,45) open circle, slightly larger -->
+    <circle cx="15" cy="45" r="5" fill="none" stroke-width="1"/>
+
+    <!-- (45,45) short diagonal line -->
+    <line x1="39" y1="51" x2="51" y2="39" stroke-width="1" fill="none"/>
+
+    <!-- (75,45) small filled dot -->
+    <circle cx="75" cy="45" r="1.5" stroke="none"/>
+
+    <!-- (105,45) arrow pointing NE (upper-right) -->
+    <path d="M 98,52 L 112,38 M 102,38 L 112,38 L 112,48" stroke-width="1" fill="none"/>
+
+    <!-- Row 3 -->
+    <!-- (15,75) short diagonal line -->
+    <line x1="9" y1="81" x2="21" y2="69" stroke-width="1" fill="none"/>
+
+    <!-- (45,75) tiny dot -->
+    <circle cx="45" cy="75" r="0.8" stroke="none"/>
+
+    <!-- (75,75) small filled dot -->
+    <circle cx="75" cy="75" r="1.5" stroke="none"/>
+
+    <!-- (105,75) arrow pointing SW (down-left) -->
+    <path d="M 112,68 L 98,82 M 103,82 L 98,82 L 98,77" stroke-width="1" fill="none"/>
+
+  </g>
+</svg>
