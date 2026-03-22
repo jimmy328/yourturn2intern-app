@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YourTurn2Intern — Brand Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: letter; margin: 0; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #1D72D4;
+      --coral:  #E8625C;
+      --navy:   #1a2744;
+      --ink:    #111827;
+      --body:   #374151;
+      --muted:  #6B7280;
+      --bg:     #F9FAFB;
+      --border: #E2E7EE;
+      --white:  #ffffff;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      background-image: url('../backgrounds/mix-b.svg');
+      background-repeat: repeat;
+      background-size: 280px;
+      color: var(--ink);
+      width: 8.5in;
+      height: 11in;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── Spine ── */
+    .spine {
+      position: absolute;
+      left: 0; top: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--blue) 0%, var(--navy) 100%);
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 20px 44px 18px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--border);
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(4px);
+    }
+    .logo img {
+      height: 32px;
+      display: block;
+    }
+    .header-right {
+      text-align: right;
+    }
+    .guide-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .guide-version {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── Main grid ── */
+    .main {
+      flex: 1;
+      padding: 20px 44px 0 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto 1fr;
+      gap: 0 24px;
+      min-height: 0;
+      background: rgba(255,255,255,0.6);
+    }
+
+    /* section label */
+    .sec-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .sec-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    /* ── Logo section (spans 3 cols) ── */
+    .logo-section {
+      grid-column: 1 / -1;
+      background: rgba(255,255,255,0.88);
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--border);
+    }
+    .logo-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 10px;
+      border-radius: 8px;
+    }
+    .logo-block img {
+      height: 28px;
+      display: block;
+    }
+    .logo-block--white {
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+    .logo-block--dark {
+      background: var(--navy);
+    }
+    .logo-block--dark img {
+      filter: brightness(0) invert(1);
+    }
+    .logo-block--blue {
+      background: var(--blue);
+    }
+    .logo-block--blue img {
+      filter: brightness(0) invert(1);
+    }
+    .logo-block--nope {
+      background: var(--white);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-block--nope img {
+      filter: grayscale(1) opacity(0.35);
+    }
+    .logo-block--nope::after {
+      content: '✕  Don\'t stretch or distort';
+      position: absolute;
+      top: 8px; right: 8px;
+      font-size: 8px;
+      color: var(--coral);
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+    }
+    .logo-caption {
+      font-size: 9px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .logo-block--dark .logo-caption { color: rgba(255,255,255,0.45); }
+    .logo-block--blue .logo-caption { color: rgba(255,255,255,0.55); }
+    .logo-section-header {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    /* ── Colors ── */
+    .color-col {
+      grid-column: 1;
+    }
+    .swatches {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 7px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .swatch__color {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .swatch__info { padding: 0 6px; }
+    .swatch__name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .swatch__hex {
+      font-size: 9px;
+      color: var(--muted);
+      font-family: 'DM Sans', monospace;
+      letter-spacing: 0.04em;
+    }
+    .swatch__use {
+      font-size: 9px;
+      color: var(--muted);
+      line-height: 1.3;
+      margin-top: 1px;
+    }
+
+    /* ── Typography ── */
+    .type-col {
+      grid-column: 2;
+      border-left: 1px solid var(--border);
+      padding-left: 24px;
+    }
+    .font-block { margin-bottom: 14px; }
+    .font-block:last-child { margin-bottom: 0; }
+    .font-name {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .type-sample { line-height: 1.2; margin-bottom: 3px; }
+    .type-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+    .type-tag {
+      font-size: 8px;
+      color: var(--muted);
+      width: 56px;
+      flex-shrink: 0;
+    }
+    .nunito-900 { font-family: 'Nunito', sans-serif; font-weight: 900; }
+    .nunito-800 { font-family: 'Nunito', sans-serif; font-weight: 800; }
+    .nunito-700 { font-family: 'Nunito', sans-serif; font-weight: 700; }
+    .nunito-600 { font-family: 'Nunito', sans-serif; font-weight: 600; }
+    .dm-600 { font-family: 'DM Sans', sans-serif; font-weight: 600; }
+    .dm-500 { font-family: 'DM Sans', sans-serif; font-weight: 500; }
+    .dm-400 { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .dm-400i { font-family: 'DM Sans', sans-serif; font-weight: 400; font-style: italic; }
+
+    /* ── Voice + Dos/Donts ── */
+    .voice-col {
+      grid-column: 3;
+      border-left: 1px solid var(--border);
+      padding-left: 24px;
+    }
+    .voice-list {
+      list-style: none;
+      margin-bottom: 14px;
+    }
+    .voice-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: 10px;
+      color: var(--body);
+      line-height: 1.45;
+      margin-bottom: 7px;
+    }
+    .voice-list li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    .dd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .dd-block {
+      border-radius: 7px;
+      padding: 8px 10px;
+    }
+    .dd-block--do { background: #EBF4FF; }
+    .dd-block--dont { background: #FEF2F1; }
+    .dd-header {
+      font-family: 'Nunito', sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .dd-block--do .dd-header { color: var(--blue); }
+    .dd-block--dont .dd-header { color: var(--coral); }
+    .dd-list {
+      list-style: none;
+    }
+    .dd-list li {
+      font-size: 9px;
+      color: var(--body);
+      line-height: 1.4;
+      margin-bottom: 4px;
+      padding-left: 10px;
+      position: relative;
+    }
+    .dd-block--do .dd-list li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      color: var(--blue);
+      font-size: 8px;
+      font-weight: 700;
+    }
+    .dd-block--dont .dd-list li::before {
+      content: '✕';
+      position: absolute; left: 0;
+      color: var(--coral);
+      font-size: 8px;
+      font-weight: 700;
+    }
+
+    /* ── Divider between logo area and columns ── */
+    .col-divider-row {
+      grid-column: 1 / -1;
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 18px 0;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--navy);
+      padding: 13px 44px 13px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      margin-top: auto;
+    }
+    .footer__logo img {
+      height: 22px;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+    .footer__url {
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+    }
+    .footer__tag {
+      font-size: 9px;
+      color: rgba(255,255,255,0.4);
+      text-align: right;
+    }
+
+    /* ── Horizontal rule between logo section and col section ── */
+    .logo-wrap {
+      grid-column: 1 / -1;
+    }
+
+    @media print {
+      body { width: 8.5in; height: 11in; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="spine"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo"><img src="YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" /></div>
+    <div class="header-right">
+      <div class="guide-label">Brand Guide</div>
+      <div class="guide-version">Version 1.0 &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Logo usage (full width) -->
+    <div class="logo-wrap">
+      <div class="sec-label" style="margin-bottom:8px;">Logo Usage</div>
+      <div class="logo-section">
+        <div class="logo-section-header">
+          <!-- spacer -->
+        </div>
+
+        <div class="logo-block logo-block--white">
+          <img src="YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+          <div class="logo-caption">Primary — on white</div>
+        </div>
+
+        <div class="logo-block logo-block--dark">
+          <img src="YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+          <div class="logo-caption">Reversed — on navy</div>
+        </div>
+
+        <div class="logo-block logo-block--blue">
+          <img src="YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+          <div class="logo-caption">Reversed — on blue</div>
+        </div>
+
+        <div class="logo-block logo-block--nope">
+          <img src="YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" style="transform: scaleX(1.4);" />
+          <div class="logo-caption" style="color:var(--coral); margin-top:4px;">Don't stretch or modify</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="col-divider-row"></div>
+
+    <!-- Col 1: Colors -->
+    <div class="color-col">
+      <div class="sec-label">Color Palette</div>
+      <div class="swatches">
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#1D72D4;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Blue</div>
+            <div class="swatch__hex">#1D72D4</div>
+            <div class="swatch__use">Headers, CTAs, links, "2" in logo</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#E8625C;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Coral</div>
+            <div class="swatch__hex">#E8625C</div>
+            <div class="swatch__use">Badges, accent buttons, alerts</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#1a2744;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Navy</div>
+            <div class="swatch__hex">#1a2744</div>
+            <div class="swatch__use">Footer backgrounds, dark sections</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#111827;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Ink</div>
+            <div class="swatch__hex">#111827</div>
+            <div class="swatch__use">Body copy, headings, logo text</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#374151;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Body</div>
+            <div class="swatch__hex">#374151</div>
+            <div class="swatch__use">Secondary text, descriptions</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#6B7280;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Muted</div>
+            <div class="swatch__hex">#6B7280</div>
+            <div class="swatch__use">Labels, captions, meta info</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#F9FAFB; border-right: 1px solid var(--border);"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Background</div>
+            <div class="swatch__hex">#F9FAFB</div>
+            <div class="swatch__use">Page bg, card fills, input bg</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch__color" style="background:#E2E7EE;"></div>
+          <div class="swatch__info">
+            <div class="swatch__name">Border</div>
+            <div class="swatch__hex">#E2E7EE</div>
+            <div class="swatch__use">Dividers, card borders, rules</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Col 2: Typography -->
+    <div class="type-col">
+      <div class="sec-label">Typography</div>
+
+      <div class="font-block">
+        <div class="font-name">Nunito — Display &amp; UI</div>
+
+        <div class="type-row">
+          <span class="type-tag">900 · Hero</span>
+          <span class="nunito-900" style="font-size:20px; color:var(--ink); letter-spacing:-0.3px;">Civic starts local.</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">800 · H2</span>
+          <span class="nunito-800" style="font-size:15px; color:var(--ink);">What students get</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">700 · H3</span>
+          <span class="nunito-700" style="font-size:13px; color:var(--ink);">Local. Non-partisan. Free.</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">800 · Label</span>
+          <span class="nunito-800" style="font-size:9px; color:var(--blue); letter-spacing:0.12em; text-transform:uppercase;">Section Label</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">800 · Badge</span>
+          <span style="display:inline-block; background:var(--coral); color:#fff; font-family:'Nunito',sans-serif; font-weight:800; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; padding:3px 9px; border-radius:100px;">For Students</span>
+        </div>
+      </div>
+
+      <div style="height:1px; background:var(--border); margin: 10px 0;"></div>
+
+      <div class="font-block">
+        <div class="font-name">DM Sans — Body &amp; Interface</div>
+
+        <div class="type-row">
+          <span class="type-tag">600 · Strong</span>
+          <span class="dm-600" style="font-size:12px; color:var(--ink);">Browse internships</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">500 · UI</span>
+          <span class="dm-500" style="font-size:12px; color:var(--body);">Nassau · Suffolk · Free</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">400 · Body</span>
+          <span class="dm-400" style="font-size:11.5px; color:var(--body); line-height:1.5;">Connect Long Island students with civic<br>internships, campaigns, and government.</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">400i · Quote</span>
+          <span class="dm-400i" style="font-size:11px; color:var(--muted);">"Real experience, right here."</span>
+        </div>
+        <div class="type-row">
+          <span class="type-tag">400 · Small</span>
+          <span class="dm-400" style="font-size:9.5px; color:var(--muted); letter-spacing:0.04em;">yourturn2intern.org</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 3: Voice + Dos/Donts -->
+    <div class="voice-col">
+      <div class="sec-label" style="margin-bottom:8px;">Voice &amp; Tone</div>
+      <ul class="voice-list">
+        <li><strong>Civic, not political.</strong> We're non-partisan — equal access for students regardless of their political views.</li>
+        <li><strong>Student-first.</strong> Speak directly to young people. Keep it approachable, energetic, and real.</li>
+        <li><strong>Local pride.</strong> Long Island isn't a consolation prize. Lean into community and proximity.</li>
+        <li><strong>Low-pressure.</strong> No hard sells, no jargon. This platform is genuinely free and easy — say so.</li>
+      </ul>
+
+      <div style="height:1px; background:var(--border); margin: 10px 0;"></div>
+
+      <div class="sec-label" style="margin-bottom:8px;">Do's &amp; Don'ts</div>
+      <div class="dd-grid">
+        <div class="dd-block dd-block--do">
+          <div class="dd-header">Do</div>
+          <ul class="dd-list">
+            <li>Use "YourTurn2Intern" as one word</li>
+            <li>Keep "2" blue in the logo</li>
+            <li>Use Nunito 900 for hero headlines</li>
+            <li>Lead with "free" and "local"</li>
+            <li>Maintain contrast on all backgrounds</li>
+          </ul>
+        </div>
+        <div class="dd-block dd-block--dont">
+          <div class="dd-header">Don't</div>
+          <ul class="dd-list">
+            <li>Write "Your Turn 2 Intern" (no spaces)</li>
+            <li>Recolor or modify the "2"</li>
+            <li>Use coral for body text</li>
+            <li>Mix fonts outside the type system</li>
+            <li>Use the logo on busy backgrounds</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer__logo"><img src="YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" /></div>
+    <div class="footer__url">yourturn2intern.org</div>
+    <div class="footer__tag">Brand Guide v1.0 · 2026<br>jeremy@yourturn2intern.org</div>
+  </div>
+
+</body>
+</html>

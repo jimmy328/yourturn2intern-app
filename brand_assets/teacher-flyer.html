@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YourTurn2Intern — Teacher Flyer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    @page { size: letter; margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #1D72D4;
+      --coral:  #E8625C;
+      --navy:   #1a2744;
+      --ink:    #111827;
+      --body:   #374151;
+      --muted:  #6B7280;
+      --bg:     #F9FAFB;
+      --border: #E2E7EE;
+    }
+
+    html, body {
+      width: 8.5in;
+      height: 11in;
+      overflow: hidden;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      background: #fff;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .page {
+      width: 8.5in;
+      height: 11in;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    .header {
+      background: var(--navy);
+      padding: 0.38in 0.55in;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    /* Large decorative ring — top right */
+    .header::before {
+      content: '';
+      position: absolute;
+      right: -0.55in;
+      top: -0.55in;
+      width: 2.4in;
+      height: 2.4in;
+      border-radius: 50%;
+      border: 0.22in solid rgba(255,255,255,0.055);
+      pointer-events: none;
+    }
+    /* Smaller accent ring */
+    .header::after {
+      content: '';
+      position: absolute;
+      right: 0.32in;
+      top: -0.7in;
+      width: 1.5in;
+      height: 1.5in;
+      border-radius: 50%;
+      border: 0.1in solid rgba(29,114,212,0.22);
+      pointer-events: none;
+    }
+    .header__logo img {
+      height: 0.62in;
+      width: auto;
+      filter: brightness(0) invert(1);
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .header__tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.125in;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.065in 0.13in;
+      border-radius: 0.04in;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── MAIN BODY ──────────────────────────────────────── */
+    .body {
+      flex: 1;
+      padding: 0.52in 0.6in 0.38in;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dot-grid background texture */
+    .body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #ccdaf2 1.2px, transparent 1.2px);
+      background-size: 0.26in 0.26in;
+      opacity: 0.38;
+      pointer-events: none;
+    }
+
+    /* Long Island silhouette — subtle watermark bottom-right */
+    .body::after {
+      content: '';
+      position: absolute;
+      right: 0.4in;
+      bottom: 1.1in;
+      width: 3.2in;
+      height: 1.1in;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 110' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 80 Q40 60 80 55 Q120 50 160 48 Q200 46 240 44 Q270 42 295 38 Q308 35 315 30 L310 50 Q285 58 250 62 Q220 65 190 67 Q150 70 110 72 Q70 74 40 80 Q20 85 10 90 Z' fill='%231D72D4' opacity='0.05'/%3E%3C/svg%3E") no-repeat center / contain;
+      pointer-events: none;
+    }
+
+    /* ─── Eyebrow label ─── */
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.125in;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.17in;
+      display: flex;
+      align-items: center;
+      gap: 0.1in;
+      position: relative;
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 0.24in;
+      height: 2.5px;
+      background: var(--coral);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Headline ─── */
+    .headline {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 0.595in;
+      line-height: 1.05;
+      color: var(--navy);
+      letter-spacing: -0.022em;
+      margin-bottom: 0.24in;
+      position: relative;
+      max-width: 7.2in;
+    }
+    .headline em {
+      font-style: normal;
+      color: var(--blue);
+      position: relative;
+    }
+    /* Underline accent on "Never Forget" */
+    .headline em::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0.02in;
+      width: 100%;
+      height: 0.04in;
+      background: var(--coral);
+      border-radius: 2px;
+      opacity: 0.55;
+    }
+
+    /* ─── Coral divider ─── */
+    .divider {
+      width: 0.45in;
+      height: 3px;
+      background: var(--coral);
+      border-radius: 3px;
+      margin-bottom: 0.2in;
+      position: relative;
+    }
+
+    /* ─── Explainer ─── */
+    .explainer {
+      font-size: 0.182in;
+      font-weight: 400;
+      color: var(--body);
+      line-height: 1.58;
+      max-width: 5.6in;
+      margin-bottom: 0.34in;
+      position: relative;
+    }
+
+    /* ─── Benefits ─── */
+    .benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15in;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.13in;
+    }
+    .benefit__dot {
+      width: 0.27in;
+      height: 0.27in;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.015in;
+    }
+    .benefit__dot svg {
+      width: 0.135in;
+      height: 0.135in;
+    }
+    .benefit__text {
+      font-size: 0.17in;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.42;
+    }
+
+    /* ─── CTA BOX ─────────────────────────────────────────── */
+    .cta-box {
+      margin-top: auto;
+      background: var(--coral);
+      border-radius: 0.12in;
+      padding: 0.28in 0.38in;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      right: -0.35in;
+      top: -0.5in;
+      width: 2in;
+      height: 2in;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      pointer-events: none;
+    }
+    .cta-box::after {
+      content: '';
+      position: absolute;
+      right: 0.55in;
+      bottom: -0.55in;
+      width: 1.2in;
+      height: 1.2in;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.055);
+      pointer-events: none;
+    }
+    .cta-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.055in;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-label {
+      font-size: 0.135in;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+    }
+    .cta-url {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 0.44in;
+      color: #fff;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .cta-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.07in;
+    }
+    .qr-box {
+      width: 0.88in;
+      height: 0.88in;
+      background: #fff;
+      border-radius: 0.07in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.07in;
+    }
+    .qr-box svg { width: 100%; height: 100%; }
+    .qr-note {
+      font-size: 0.095in;
+      font-weight: 500;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      padding: 0.15in 0.6in;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .footer__tagline {
+      font-size: 0.112in;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+    }
+    .footer__url {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.125in;
+      font-weight: 700;
+      color: rgba(255,255,255,0.65);
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="header__logo">
+      <img src="YourTurn2Intern_LOGO.png" alt="YourTurn2Intern">
+    </div>
+    <span class="header__tag">For Social Studies Teachers</span>
+  </header>
+
+  <!-- ── Body ── -->
+  <main class="body">
+
+    <div class="eyebrow">Long Island Civic Internships</div>
+
+    <h1 class="headline">
+      Give Your Students<br>
+      a Civics Experience<br>
+      They'll <em>Never Forget.</em>
+    </h1>
+
+    <div class="divider"></div>
+
+    <p class="explainer">
+      YourTurn2Intern connects Long Island high school students with free internship
+      opportunities at local campaigns, government offices, and nonprofits.
+    </p>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit__dot">
+          <!-- Star icon -->
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1.5L8.3 5.1H12.1L9 7.3L10.3 11L7 8.8L3.7 11L5 7.3L1.9 5.1H5.7L7 1.5Z" fill="white"/>
+          </svg>
+        </div>
+        <span class="benefit__text">Work alongside real candidates and elected officials on Long Island</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit__dot">
+          <!-- Ballot / document icon -->
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.5" y="1.5" width="9" height="11" rx="1" stroke="white" stroke-width="1.2"/>
+            <path d="M4.5 5h5M4.5 7.5h5M4.5 10h3" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="benefit__text">Apply classroom civics to real Long Island elections — not textbook scenarios</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit__dot">
+          <!-- Checkmark circle icon -->
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7" cy="7" r="5.5" stroke="white" stroke-width="1.2"/>
+            <path d="M4.5 7l2 2 3-3" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="benefit__text">Build a college résumé with real civic experience — completely free</span>
+      </div>
+    </div>
+
+    <!-- ── CTA ── -->
+    <div class="cta-box">
+      <div class="cta-left">
+        <span class="cta-label">Share this link with your students</span>
+        <span class="cta-url">yourturn2intern.org</span>
+      </div>
+      <div class="cta-right">
+        <div class="qr-box">
+          <!-- QR-style placeholder grid -->
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Top-left corner square -->
+            <rect x="5"  y="5"  width="32" height="32" rx="4" fill="none" stroke="#1a2744" stroke-width="6"/>
+            <rect x="14" y="14" width="14" height="14" fill="#1a2744"/>
+            <!-- Top-right corner square -->
+            <rect x="63" y="5"  width="32" height="32" rx="4" fill="none" stroke="#1a2744" stroke-width="6"/>
+            <rect x="72" y="14" width="14" height="14" fill="#1a2744"/>
+            <!-- Bottom-left corner square -->
+            <rect x="5"  y="63" width="32" height="32" rx="4" fill="none" stroke="#1a2744" stroke-width="6"/>
+            <rect x="14" y="72" width="14" height="14" fill="#1a2744"/>
+            <!-- Data cells -->
+            <rect x="48" y="5"  width="9" height="9" fill="#1a2744"/>
+            <rect x="48" y="19" width="9" height="9" fill="#1a2744"/>
+            <rect x="48" y="33" width="9" height="9" fill="#1a2744"/>
+            <rect x="5"  y="48" width="9" height="9" fill="#1a2744"/>
+            <rect x="19" y="48" width="9" height="9" fill="#1a2744"/>
+            <rect x="33" y="48" width="9" height="9" fill="#1a2744"/>
+            <rect x="48" y="48" width="9" height="9" fill="#1a2744"/>
+            <rect x="63" y="48" width="9" height="9" fill="#1a2744"/>
+            <rect x="77" y="48" width="9" height="9" fill="#1a2744"/>
+            <rect x="91" y="48" width="9" height="9" fill="#1a2744"/>
+            <rect x="63" y="63" width="9" height="9" fill="#1a2744"/>
+            <rect x="77" y="77" width="9" height="9" fill="#1a2744"/>
+            <rect x="91" y="63" width="9" height="9" fill="#1a2744"/>
+            <rect x="63" y="77" width="9" height="9" fill="#1a2744"/>
+            <rect x="77" y="63" width="9" height="9" fill="#1a2744"/>
+            <rect x="91" y="77" width="9" height="9" fill="#1a2744"/>
+            <rect x="63" y="91" width="9" height="9" fill="#1a2744"/>
+            <rect x="91" y="91" width="9" height="9" fill="#1a2744"/>
+          </svg>
+        </div>
+        <span class="qr-note">Scan to visit</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <span class="footer__tagline">A free civic internship platform for Long Island students.</span>
+    <span class="footer__url">yourturn2intern.org</span>
+  </footer>
+
+</div>
+</body>
+</html>
