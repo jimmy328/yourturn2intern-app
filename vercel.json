@@ -1,16 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "serve.mjs",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "serve.mjs"
-    }
-  ],
-  "env": {}
+  "buildCommand": "echo 'No build needed for static site'",
+  "public": true
 }
