@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+  <g stroke="rgb(150,180,215)" fill="none" opacity="0.23" stroke-linecap="round">
+    <!-- Plus mark centered at (14,14) -->
+    <line x1="8"  y1="14" x2="20" y2="14" stroke-width="1"/>
+    <line x1="14" y1="8"  x2="14" y2="20" stroke-width="1"/>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Background Previews</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #dde2e8; font-family: system-ui, sans-serif; padding: 32px; }
+    h1 { font-size: 13px; color: #666; margin-bottom: 20px; letter-spacing: .08em; text-transform: uppercase; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .preview { height: 280px; background-color: #fff; }
+    .preview--a { background-image: url('mix-a.svg'); background-size: 120px 90px; }
+    .preview--b { background-image: url('mix-b.svg'); background-size: 160px 120px; }
+    .preview--c { background-image: url('mix-c.svg'); background-size: 120px 90px; }
+    .label {
+      padding: 14px 18px;
+      border-top: 1px solid #eee;
+      font-size: 13px; font-weight: 600; color: #333;
+    }
+    .label span { display: block; color: #999; font-weight: 400; font-size: 12px; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <h1>Mixed patterns — pick one</h1>
+  <div class="grid">
+    <div class="card">
+      <div class="preview preview--a"></div>
+      <div class="label">A — Flow
+        <span>NE arrows + rings + ticks + plus, diagonal movement</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview preview--b"></div>
+      <div class="label">B — Full
+        <span>5×4 grid, every element type per row, denser</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="preview preview--c"></div>
+      <div class="label">C — Sparse
+        <span>Large rings as anchors, arrows at corners, airy spacing</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

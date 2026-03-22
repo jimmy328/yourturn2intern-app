@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="90">
+  <!--
+    "Flow" — 4×3 grid, 30px spacing, 15px offset
+    Arrows and ticks create a diagonal movement feel
+    (15,15)(45,15)(75,15)(105,15)
+    (15,45)(45,45)(75,45)(105,45)
+    (15,75)(45,75)(75,75)(105,75)
+  -->
+  <g stroke="rgb(150,180,215)" fill="rgb(150,180,215)" opacity="0.23"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Row 1 -->
+    <path d="M 8,22 L 22,8 M 14,8 L 22,8 L 22,14"     stroke-width="1" fill="none"/> <!-- NE arrow @ 15,15 -->
+    <circle cx="45" cy="15" r="0.8" stroke="none"/>                                    <!-- tiny dot -->
+    <circle cx="75" cy="15" r="4"   fill="none" stroke-width="1"/>                    <!-- ring -->
+    <line x1="99" y1="21" x2="111" y2="9"              stroke-width="1"/>             <!-- tick @ 105,15 -->
+
+    <!-- Row 2 -->
+    <circle cx="15" cy="45" r="5"   fill="none" stroke-width="1"/>                    <!-- ring -->
+    <path d="M 38,52 L 52,38 M 44,38 L 52,38 L 52,44" stroke-width="1" fill="none"/> <!-- NE arrow @ 45,45 -->
+    <path d="M 70,45 L 80,45 M 75,40 L 75,50"         stroke-width="1" fill="none"/> <!-- plus @ 75,45 -->
+    <circle cx="105" cy="45" r="0.8" stroke="none"/>                                  <!-- tiny dot -->
+
+    <!-- Row 3 -->
+    <line x1="9"  y1="81" x2="21"  y2="69"            stroke-width="1"/>             <!-- tick @ 15,75 -->
+    <circle cx="45" cy="75" r="3"   fill="none" stroke-width="1"/>                    <!-- ring -->
+    <path d="M 82,68 L 68,82 M 73,82 L 68,82 L 68,77" stroke-width="1" fill="none"/> <!-- SW arrow @ 75,75 -->
+    <path d="M 100,75 L 110,75 M 105,70 L 105,80"     stroke-width="1" fill="none"/> <!-- plus @ 105,75 -->
+
+  </g>
+</svg>

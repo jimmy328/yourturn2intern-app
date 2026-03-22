@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120">
+  <!--
+    "Full" — 5×4 grid, 32px spacing, 16px offset
+    All elements appear in each row — denser and more varied
+    Cols: 16, 48, 80, 112, 144
+    Rows: 16, 48, 80, 112
+  -->
+  <g stroke="rgb(150,180,215)" fill="rgb(150,180,215)" opacity="0.23"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Row 1 -->
+    <path d="M 11,16 L 21,16 M 16,11 L 16,21"           stroke-width="1" fill="none"/> <!-- plus  @ 16,16 -->
+    <circle cx="48"  cy="16" r="5"  fill="none" stroke-width="1"/>                      <!-- ring  @ 48,16 -->
+    <circle cx="80"  cy="16" r="1.5" stroke="none"/>                                    <!-- dot   @ 80,16 -->
+    <line x1="106" y1="22" x2="118" y2="10"              stroke-width="1"/>            <!-- tick  @ 112,16 -->
+    <path d="M 151,9 L 137,23 M 142,23 L 137,23 L 137,18" stroke-width="1" fill="none"/> <!-- SW arrow @ 144,16 -->
+
+    <!-- Row 2 -->
+    <circle cx="16"  cy="48" r="4"  fill="none" stroke-width="1"/>                      <!-- ring  @ 16,48 -->
+    <line x1="42"  y1="54" x2="54"  y2="42"              stroke-width="1"/>            <!-- tick  @ 48,48 -->
+    <path d="M 73,55 L 87,41 M 79,41 L 87,41 L 87,47"   stroke-width="1" fill="none"/> <!-- NE arrow @ 80,48 -->
+    <circle cx="112" cy="48" r="3"  fill="none" stroke-width="1"/>                      <!-- ring  @ 112,48 -->
+    <circle cx="144" cy="48" r="1.5" stroke="none"/>                                    <!-- dot   @ 144,48 -->
+
+    <!-- Row 3 -->
+    <path d="M 23,73 L 9,87 M 14,87 L 9,87 L 9,82"      stroke-width="1" fill="none"/> <!-- SW arrow @ 16,80 -->
+    <circle cx="48"  cy="80" r="1.5" stroke="none"/>                                    <!-- dot   @ 48,80 -->
+    <circle cx="80"  cy="80" r="5"  fill="none" stroke-width="1"/>                      <!-- ring  @ 80,80 -->
+    <path d="M 105,87 L 119,73 M 111,73 L 119,73 L 119,79" stroke-width="1" fill="none"/> <!-- NE arrow @ 112,80 -->
+    <line x1="138" y1="86" x2="150" y2="74"              stroke-width="1"/>            <!-- tick  @ 144,80 -->
+
+    <!-- Row 4 -->
+    <circle cx="16"  cy="112" r="1.5" stroke="none"/>                                   <!-- dot   @ 16,112 -->
+    <path d="M 41,119 L 55,105 M 47,105 L 55,105 L 55,111" stroke-width="1" fill="none"/> <!-- NE arrow @ 48,112 -->
+    <path d="M 75,112 L 85,112 M 80,107 L 80,117"        stroke-width="1" fill="none"/> <!-- plus  @ 80,112 -->
+    <circle cx="112" cy="112" r="1.5" stroke="none"/>                                   <!-- dot   @ 112,112 -->
+    <circle cx="144" cy="112" r="4"  fill="none" stroke-width="1"/>                     <!-- ring  @ 144,112 -->
+
+  </g>
+</svg>

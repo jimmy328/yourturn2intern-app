@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YourTurn2Intern — One-Pager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    /* Print-optimized: US Letter, fits on one page */
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fff;
+      color: #111827;
+      width: 8.5in;
+      height: 11in;
+      display: flex;
+      flex-direction: column;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── Top stripe ──────────────────────────────────────────── */
+    .top-stripe {
+      background: #1D72D4;
+      height: 8px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* ── Header ──────────────────────────────────────────────── */
+    .header {
+      background: #ffffff;
+      border-bottom: 1.5px solid #E2E7EE;
+      padding: 28px 48px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .header__logo-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #111827;
+      letter-spacing: -0.3px;
+    }
+    .header__logo-text span { color: #1D72D4; }
+    .header__url {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6B7280;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #1D72D4 0%, #155DB0 100%);
+      padding: 40px 48px 36px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: 60px; top: 40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .hero__eyebrow {
+      font-family: 'Nunito', sans-serif;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 10px;
+    }
+    .hero__headline {
+      font-family: 'Nunito', sans-serif;
+      font-size: 32px; font-weight: 900;
+      color: #ffffff; line-height: 1.15;
+      margin-bottom: 12px;
+      max-width: 540px;
+    }
+    .hero__sub {
+      font-size: 13px; color: rgba(255,255,255,0.85);
+      line-height: 1.6; max-width: 500px;
+    }
+    .hero__coral {
+      display: inline-block;
+      background: #E8625C;
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+      margin-bottom: 14px;
+    }
+
+    /* ── Body ────────────────────────────────────────────────── */
+    .body {
+      flex: 1;
+      padding: 32px 48px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .section-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 9px; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #1D72D4; margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px; font-weight: 800;
+      color: #111827; margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    /* What it is */
+    .what-it-is p {
+      font-size: 12px; color: #374151; line-height: 1.65;
+    }
+
+    /* What students get */
+    .benefits { }
+    .benefit-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .benefit-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: #D6E8FA;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .benefit-text strong {
+      display: block;
+      font-size: 11.5px; font-weight: 700; color: #111827;
+      margin-bottom: 1px;
+    }
+    .benefit-text span {
+      font-size: 11px; color: #6B7280; line-height: 1.4;
+    }
+
+    /* Divider */
+    .col-divider {
+      grid-column: 1 / -1;
+      height: 1px; background: #E2E7EE;
+      margin: 0 -48px;
+      width: calc(100% + 96px);
+    }
+
+    /* Opportunities types */
+    .opp-types {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .opp-type {
+      border: 1.5px solid #E2E7EE;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .opp-type__icon { font-size: 20px; margin-bottom: 6px; }
+    .opp-type__name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px; font-weight: 800; color: #111827;
+      margin-bottom: 3px;
+    }
+    .opp-type__desc { font-size: 10.5px; color: #6B7280; line-height: 1.4; }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .footer {
+      background: #1a2744;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      margin-top: auto;
+    }
+    .footer__left {
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px; font-weight: 800; color: #fff;
+    }
+    .footer__left span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10.5px; font-weight: 400;
+      color: rgba(255,255,255,0.55); margin-top: 2px;
+    }
+    .footer__cta {
+      background: #E8625C;
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 11px; font-weight: 800;
+      padding: 10px 22px; border-radius: 8px;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+    .footer__middle {
+      font-size: 10.5px; color: rgba(255,255,255,0.55);
+      text-align: center; line-height: 1.6;
+    }
+    .footer__middle strong { color: rgba(255,255,255,0.85); display: block; font-size: 11px; }
+
+    @media print {
+      body { width: 8.5in; height: 11in; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-stripe"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header__logo-text">YourTurn<span>2</span>Intern</div>
+    <div class="header__url">yourturn2intern.org</div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero__coral">For Long Island Students</div>
+    <div class="hero__headline">Real civic experience.<br>Right here on Long Island.</div>
+    <div class="hero__sub">YourTurn2Intern connects Nassau and Suffolk County students with internships at local campaigns, government offices, and nonprofits — for free.</div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- What it is -->
+    <div class="what-it-is">
+      <div class="section-label">What is YourTurn2Intern?</div>
+      <div class="section-title">A free platform built for Long Island students</div>
+      <p>YourTurn2Intern is a searchable database of civic internships and volunteer opportunities across Nassau and Suffolk County. Students can browse by location, type, and format — and apply directly to campaigns, town offices, county agencies, and nonprofits.</p>
+      <p style="margin-top:10px;">Every listing is local, vetted, and free to access. There's no cost to students, and no sign-up required to browse.</p>
+    </div>
+
+    <!-- Benefits -->
+    <div class="benefits">
+      <div class="section-label">What students get</div>
+      <div class="section-title">More than just a résumé line</div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🗺️</div>
+        <div class="benefit-text">
+          <strong>Local, real opportunities</strong>
+          <span>Every listing is in Nassau or Suffolk — no commuting to the city</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">⚖️</div>
+        <div class="benefit-text">
+          <strong>Fully non-partisan</strong>
+          <span>Both parties, plus government offices and nonprofits</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">📚</div>
+        <div class="benefit-text">
+          <strong>Connects to coursework</strong>
+          <span>Ideal for AP Gov, AP US History, and civics classes</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🚀</div>
+        <div class="benefit-text">
+          <strong>Early career foundation</strong>
+          <span>Real references, skills, and networks before graduation</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-divider"></div>
+
+    <!-- Opportunity types -->
+    <div style="grid-column: 1 / -1;">
+      <div class="section-label">Types of opportunities</div>
+    </div>
+    <div class="opp-types">
+      <div class="opp-type">
+        <div class="opp-type__icon">🗳️</div>
+        <div class="opp-type__name">Political Campaigns</div>
+        <div class="opp-type__desc">Town supervisor, county legislature, state assembly — all local races</div>
+      </div>
+      <div class="opp-type">
+        <div class="opp-type__icon">🏛️</div>
+        <div class="opp-type__name">Government Offices</div>
+        <div class="opp-type__desc">Town halls, county agencies, elected officials' offices</div>
+      </div>
+      <div class="opp-type">
+        <div class="opp-type__icon">🤝</div>
+        <div class="opp-type__name">Nonprofits</div>
+        <div class="opp-type__desc">Advocacy orgs, civic groups, and community nonprofits on Long Island</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer__left">
+      YourTurn2Intern
+      <span>Free for students. Always.</span>
+    </div>
+    <div class="footer__middle">
+      <strong>Share with your students</strong>
+      yourturn2intern.org
+    </div>
+    <a href="https://yourturn2intern.org" class="footer__cta">Visit the Platform →</a>
+  </div>
+
+</body>
+</html>

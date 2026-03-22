@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opportunity — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ───────────────────────────────────────────── */
+    :root {
+      --blue:        #1D72D4;
+      --blue-dark:   #155DB0;
+      --blue-light:  #D6E8FA;
+      --coral:       #E8625C;
+      --coral-dark:  #C94F49;
+      --coral-light: #FCDBD9;
+      --ink:         #111827;
+      --ink-mid:     #374151;
+      --ink-soft:    #6B7280;
+      --surface:     #FFFFFF;
+      --off:         #F5F6F8;
+      --border:      #E2E7EE;
+      --navy:        #1a2744;
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --shadow-float: 0 8px 32px rgba(26,37,64,0.12), 0 2px 8px rgba(26,37,64,0.06);
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: #FFFFFF;
+      background-image: url('backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img  { display: block; max-width: 100%; }
+    a    { color: inherit; text-decoration: none; }
+    ul   { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .container {
+      width: min(1120px, 100%);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+      transition: background 0.18s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(232,98,92,0.28);
+    }
+    .nav__cta:hover { background: var(--coral-dark); transform: translateY(-1px); }
+
+    /* ── Back link ───────────────────────────────────────────── */
+    .back-row {
+      padding-block: 20px 0;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--ink-soft);
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--blue); }
+    .back-link svg { flex-shrink: 0; }
+
+    /* ── Page layout ─────────────────────────────────────────── */
+    .listing-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      padding-block: 28px 64px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .listing-layout { grid-template-columns: 1fr; }
+      .listing-sidebar { order: -1; }
+    }
+
+    /* ── Main column ─────────────────────────────────────────── */
+    .listing-main {
+      min-width: 0;
+    }
+    .listing-org {
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .listing-org::before {
+      content: ''; display: block;
+      width: 20px; height: 2px;
+      background: var(--blue); border-radius: 2px;
+    }
+    .listing-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900; letter-spacing: -0.02em;
+      color: var(--ink); line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .listing-tags {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 32px;
+    }
+    .tag-group {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tag-group__label {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: var(--ink-soft);
+    }
+
+    /* Section headers */
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+    .listing-section { margin-bottom: 32px; }
+    .listing-section p {
+      font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .listing-section p:last-child { margin-bottom: 0; }
+    .listing-section ul {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .listing-section li {
+      font-size: 0.95rem; color: var(--ink-mid);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .listing-section li::before {
+      content: '→';
+      color: var(--blue);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    .listing-sidebar {
+      position: sticky;
+      top: 96px;
+    }
+    .sidebar-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-apply-btn {
+      display: block; width: 100%;
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 800;
+      color: #fff; background: var(--coral);
+      padding: 14px 20px; border-radius: var(--radius);
+      text-align: center;
+      transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+      box-shadow: 0 4px 16px rgba(232,98,92,0.3);
+      margin-bottom: 12px;
+    }
+    .sidebar-apply-btn:hover {
+      background: var(--coral-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232,98,92,0.4);
+    }
+
+    .sidebar-save-btn {
+      display: flex; width: 100%; align-items: center;
+      justify-content: center; gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--ink-mid);
+      background: var(--off);
+      border: 1.5px solid var(--border);
+      padding: 11px 20px; border-radius: var(--radius);
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .sidebar-save-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+    .sidebar-save-btn.saved { background: #FEF3C7; border-color: #FBBF24; color: #92400E; }
+
+    .sidebar-details {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .detail-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .detail-icon {
+      width: 32px; height: 32px;
+      background: var(--off);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--ink-soft);
+    }
+    .detail-text { min-width: 0; }
+    .detail-label {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: var(--ink-soft); margin-bottom: 2px;
+    }
+    .detail-value {
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--ink);
+    }
+    .detail-value.urgent { color: var(--coral); }
+
+    /* Tags */
+    .tag {
+      display: inline-flex; align-items: center;
+      font-size: 0.75rem; font-weight: 600;
+      border-radius: 100px; padding: 4px 12px;
+      letter-spacing: 0.01em;
+    }
+    .tag--blue   { background: #DDEEFF; color: #1558A8; }
+    .tag--coral  { background: var(--coral-light); color: var(--coral-dark); }
+    .tag--green  { background: #E2F4EC; color: #1E6644; }
+    .tag--purple { background: #EDE9FE; color: #5B21B6; }
+    .tag--grey   { background: var(--off); color: var(--ink-mid); border: 1px solid var(--border); }
+    .tag--navy   { background: #E8EDF8; color: var(--navy); }
+
+    /* ── Not found state ─────────────────────────────────────── */
+    .not-found {
+      text-align: center;
+      padding: 100px 24px;
+    }
+    .not-found__icon { font-size: 3rem; margin-bottom: 16px; }
+    .not-found__heading {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .not-found__sub { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 24px; }
+    .not-found__back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+      color: #fff; background: var(--blue);
+      padding: 11px 22px; border-radius: var(--radius);
+      transition: background 0.15s;
+    }
+    .not-found__back:hover { background: var(--blue-dark); }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .footer {
+      background: var(--ink); color: rgba(255,255,255,0.65);
+      padding-block: 48px 28px;
+      margin-top: 40px;
+    }
+    .footer__bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer__logo img { height: 36px; filter: brightness(10); margin-bottom: 12px; }
+    .footer__copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+    .footer__links-row { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer__link { font-size: 0.84rem; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer__link:hover { color: #fff; }
+
+    /* ── Fade-in ─────────────────────────────────────────────── */
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: appear 0.4s cubic-bezier(0.2, 0.85, 0.45, 1) both; }
+    .fade-in-delay { animation: appear 0.4s cubic-bezier(0.2, 0.85, 0.45, 1) 0.1s both; }
+
+    @media (max-width: 640px) {
+      .nav__links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="/opportunities.html" class="nav__link nav__link--active">Opportunities</a>
+        <a href="/resources.html"     class="nav__link">Resources</a>
+        <a href="/login.html"         class="nav__cta">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Content (filled by JS) ───────────────────────────────── -->
+  <div id="page-content"></div>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__logo">
+        <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2026 YourTurn2Intern · yourturn2intern.org</span>
+        <div class="footer__links-row">
+          <a href="/opportunities.html" class="footer__link">Opportunities</a>
+          <a href="/resources.html"     class="footer__link">Resources</a>
+          <a href="/login.html"         class="footer__link">Log In</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Same data as opportunities.html ──────────────────────────
+    // When you move to a real backend, replace both with a fetch()
+    const ALL_OPPORTUNITIES = [
+      { id:1,  org:"Patricia Canzoneri-Fitzpatrick",  title:"Patricia Canzoneri-Fitzpatrick for NY State Senate", location1:"Lynbrook, NY",        location2:"Nassau County",  state:"NY", party:"Republican", type:"Campaign", role:"Intern", format:"In-Person", deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Senator Patricia Canzoneri-Fitzpatrick represents New York's 9th Senate District, covering communities across southern Nassau County including Rockville Centre, Valley Stream, Lynbrook, and Malverne. As a campaign intern, you'll work directly with her reelection team to connect with constituents, spread her message, and help turn out voters across one of Long Island's most competitive corridors.",
+        responsibilities:["Canvass neighborhoods and knock on doors across southern Nassau communities","Make voter outreach phone calls and log responses in the campaign database","Help staff and set up community events, town halls, and meet-and-greets","Post on and monitor the campaign's social media accounts","Assist with data entry, volunteer coordination, and general office tasks"],
+        requirements:["High school student with an interest in politics, government, or public service","Outgoing, reliable, and comfortable talking to strangers at the door or on the phone","Ability to travel within southern Nassau County (Lynbrook area)","No prior experience required — just enthusiasm and a good work ethic"],
+        contact:"patriciaforsenate.com" },
+
+      { id:2,  org:"Jennifer DeSena",               title:"Jennifer DeSena for Town Supervisor",                location1:"Manhasset, NY",       location2:"Nassau County",  state:"NY", party:"Republican", type:"Campaign", role:"Intern", format:"In-Person", deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Jennifer DeSena is the Town Supervisor of North Hempstead, sworn in for her second term in January 2026. North Hempstead covers communities including Manhasset, Port Washington, Great Neck, and New Hyde Park. As a campaign intern, you'll support her reelection effort and get hands-on exposure to how a local town government and campaign work side by side.",
+        responsibilities:["Assist with voter outreach through phone banking and door-to-door canvassing","Help coordinate and staff community events across North Hempstead","Support the campaign's social media presence with content drafts and monitoring","Assist with scheduling, volunteer logistics, and administrative tasks","Attend town meetings or events as a campaign representative"],
+        requirements:["High school student interested in local government, politics, or civic engagement","Organized, dependable, and able to work independently","Comfortable communicating with community members in person and over the phone","Familiarity with North Hempstead or surrounding Nassau communities is a plus"],
+        contact:"supervisorjendesena.com" },
+
+      { id:3,  org:"Jarett Gandolfo",               title:"Jarett Gandolfo for NY State Senate",                location1:"Islip, NY",           location2:"Suffolk County", state:"NY", party:"Republican", type:"Campaign", role:"Intern", format:"In-Person", deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Jarett Gandolfo is the Republican nominee for New York's 8th Senate District, which covers the Islip area and South Shore of Suffolk County. This is an open seat — the first new Senate race in this district in years — and the campaign is building its operation from the ground up. Interns will be in from the start, helping shape a brand-new campaign in one of Suffolk County's most closely watched races.",
+        responsibilities:["Canvass precincts across the Islip and South Shore area","Phone bank and text bank voters using campaign tools","Help set up and staff campaign events and rallies","Assist with voter data entry and volunteer scheduling","Support the campaign manager with day-to-day tasks as needed"],
+        requirements:["High school student motivated to work on a competitive election campaign","Energetic, hardworking, and available on weekends and some weekdays","Ability to travel to Islip and surrounding South Shore towns","Interest in Republican politics, local elections, or civic participation"],
+        contact:"jarettgandolfo.com" },
+
+      { id:4,  org:"Rebecca Kassay",                title:"Rebecca Kassay for NY State Assembly",               location1:"Stony Brook, NY",     location2:"Suffolk County", state:"NY", party:"Democrat",   type:"Campaign", role:"Intern", format:"Hybrid",    deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Rebecca Kassay is the Assemblymember for New York's 4th Assembly District, covering Stony Brook, Port Jefferson, and surrounding communities in northern Suffolk County. She won her first term in 2024 and is running for reelection in 2026. Her campaign focuses on environmental protection, local schools, and accessible government. As an intern, you'll work alongside a small, dedicated team in a district that includes Stony Brook University and a vibrant civic community.",
+        responsibilities:["Assist with grassroots voter outreach including canvassing and phone banking","Draft and schedule content for the campaign's social media channels","Help organize community events and constituent meetings","Research local policy issues relevant to the district","Support the team with data entry, volunteer coordination, and logistics"],
+        requirements:["High school student based in or near the Stony Brook/Port Jefferson area","Curious, detail-oriented, and passionate about Long Island's environment and communities","Strong writing or communications skills are a plus","Ability to balance campaign work with school schedule"],
+        contact:"kassayforassembly.com" },
+
+      { id:5,  org:"Kim Keiserman",                 title:"Kim Keiserman for NY State Assembly",                location1:"North Hempstead, NY", location2:"Nassau County",  state:"NY", party:"Democrat",   type:"Campaign", role:"Intern", format:"Hybrid",    deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Kim Keiserman formally announced her campaign for New York's 16th Assembly District in January 2026, running for an open seat in North Hempstead after the incumbent announced he would not seek reelection. With no primary opponent, her campaign goes straight to November — making this a highly focused general election operation. Interns will play a real role in building voter awareness and support across communities including Manhasset, Port Washington, and Roslyn.",
+        responsibilities:["Canvass neighborhoods door-to-door and introduce Kim to voters","Support phone banking and voter contact efforts","Help manage the campaign's social media and digital outreach","Attend and assist with community forums and campaign events","Assist campaign staff with scheduling, volunteer coordination, and office tasks"],
+        requirements:["High school student in the North Hempstead area or wider Nassau County","Self-starter who is comfortable meeting and talking with new people","Interest in women in politics, local government, or civic leadership","Reliable, enthusiastic, and able to commit to a regular schedule"],
+        contact:"kimkeiserman.com" },
+
+      { id:6,  org:"Jack Martins",                  title:"Jack Martins for NY State Senate",                   location1:"Great Neck, NY",      location2:"Nassau County",  state:"NY", party:"Republican", type:"Campaign", role:"Intern", format:"Hybrid",    deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Senator Jack Martins represents New York's 7th Senate District in northwestern Nassau County, including Great Neck, New Hyde Park, and Floral Park. A longtime presence in Long Island politics, Senator Martins is seeking reelection in 2026. His campaign offers interns a well-organized, experienced environment with real exposure to how a Senate campaign and constituent operation function at a professional level.",
+        responsibilities:["Assist with voter outreach through canvassing and phone banking","Help staff and set up community events across the district","Support the campaign's digital communications and social media","Assist with volunteer scheduling, data entry, and logistics","Shadow campaign staff and attend public events as available"],
+        requirements:["High school student in Nassau County or the SD-7 area","Professional, punctual, and eager to learn","Interest in state-level government, legislation, or Republican politics","Strong communication skills and ability to represent the campaign positively"],
+        contact:"martinsforsenate.com" },
+
+      { id:7,  org:"Monica Martinez",               title:"Monica Martinez for NY State Senate",                location1:"Bay Shore, NY",       location2:"Suffolk County", state:"NY", party:"Democrat",   type:"Campaign", role:"Intern", format:"In-Person", deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Senator Monica Martinez represents New York's 4th Senate District in Bay Shore and the surrounding communities of central Suffolk County. She is running for reelection under New York's even-year elections law. Her campaign prioritizes working families, immigrant communities, and accessible healthcare. Interns will join a bilingual, community-rooted team and gain real experience in one of Suffolk County's most diverse and dynamic districts.",
+        responsibilities:["Knock on doors and connect with voters across the Bay Shore and Brentwood area","Make outreach calls and text constituents about the campaign","Support Spanish-language outreach if applicable","Help create and post content for the campaign's social media","Assist at campaign events, community fairs, and voter registration drives"],
+        requirements:["High school student in central Suffolk County","Bilingual (English/Spanish) candidates strongly encouraged to apply","Compassionate, outgoing, and motivated by community service","Comfortable in a fast-paced, multicultural campaign environment"],
+        contact:"monicaforny.com" },
+
+      { id:8,  org:"Steven Rhoads",                 title:"Steven Rhoads for NY State Senate",                  location1:"Syosset, NY",         location2:"Nassau County",  state:"NY", party:"Republican", type:"Campaign", role:"Intern", format:"Hybrid",    deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Senator Steven Rhoads represents New York's 5th Senate District along the Nassau–Suffolk border, covering communities including Syosset, Oyster Bay, and parts of western Suffolk. He is running for reelection in 2026. His campaign offers interns a structured, experienced political environment with opportunities to learn how a suburban Senate district operation runs from field organizing to constituent communication.",
+        responsibilities:["Canvass precincts and engage voters across the district","Conduct phone banking and voter contact using campaign databases","Assist with community events, town halls, and fundraisers","Help update and manage the campaign's social media presence","Support the office with administrative tasks, data entry, and scheduling"],
+        requirements:["High school student in the Syosset, Oyster Bay, or Nassau/Suffolk border area","Organized, reliable, and comfortable representing a campaign in the community","Interest in Republican politics, New York state government, or civic affairs","Ability to commit to at least one weekday and/or weekend per week"],
+        contact:"steverhoads.com" },
+
+      { id:9,  org:"Joe Scianablo",                 title:"Joe Scianablo for Town Supervisor",                  location1:"Hempstead, NY",       location2:"Nassau County",  state:"NY", party:"Democrat",   type:"Campaign", role:"Intern", format:"In-Person", deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Joe Scianablo is a Marine veteran, retired NYPD detective, and former prosecutor running for Town Supervisor of Hempstead — the largest township in New York State. He relaunched his campaign in February 2026 with the endorsement of Nassau County Democratic Chairman Jay Jacobs. Working on this campaign means getting involved in one of the biggest, most competitive local races on Long Island, in a district that encompasses dozens of communities across central Nassau County.",
+        responsibilities:["Canvass across Hempstead's diverse neighborhoods","Phone bank and assist with voter registration efforts","Staff and help organize campaign events and community appearances","Support the campaign's social media and digital outreach","Assist campaign staff with scheduling, volunteer management, and logistics"],
+        requirements:["High school student in the Town of Hempstead or greater Nassau County","Motivated, dependable, and able to work in a high-energy campaign environment","Interest in local government, Democratic politics, or public service","Ability to travel within a large geographic area"],
+        contact:"joeforhempsteadsupervisor.com" },
+
+      { id:10, org:"Ray Tierney",                   title:"Ray Tierney for Suffolk County DA",                  location1:"Hauppauge, NY",       location2:"Suffolk County", state:"NY", party:"Republican", type:"Campaign", role:"Intern", format:"Hybrid",    deadline:"Nov 3, 2026", posted:"2026-03-21",
+        description:"Ray Tierney is the incumbent Suffolk County District Attorney, seeking reelection in 2026. His office prosecutes crimes across all of Suffolk County, and his campaign focuses on public safety, accountability, and the rule of law. Interning on a DA's reelection campaign gives students a rare look at how law enforcement and electoral politics intersect — from policy messaging to community outreach across one of the largest counties on the East Coast.",
+        responsibilities:["Assist with voter outreach and canvassing across Suffolk County precincts","Support the campaign's digital communications and social media","Help coordinate and staff public safety-focused community events","Assist with volunteer scheduling, data entry, and campaign operations","Attend public appearances and community forums with the candidate"],
+        requirements:["High school student interested in law, criminal justice, public safety, or politics","Professional, mature, and comfortable in a law enforcement-adjacent environment","Strong communication skills and a desire to learn how county-level campaigns operate","Ability to travel within Suffolk County"],
+        contact:"Campaign@RayTierneyforDA.com" },
+    ];
+
+    // ── Lookup by URL param ───────────────────────────────────────
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'), 10);
+    const opp = ALL_OPPORTUNITIES.find(o => o.id === id);
+
+    const TAG_COLOR    = { Campaign:"coral", Civic:"blue", Government:"coral", Nonprofit:"coral" };
+    const FMT_COLOR    = { "In-Person":"green", Remote:"green", Hybrid:"green" };
+    const ROLE_COLOR   = { Intern:"purple", Volunteer:"grey" };
+    const PARTY_COLOR  = { Democrat:"blue", Republican:"coral" };
+
+    const content = document.getElementById('page-content');
+
+    if (!opp) {
+      document.title = "Not Found — YourTurn2Intern";
+      content.innerHTML = `
+        <div class="container">
+          <div class="not-found">
+            <div class="not-found__icon">🔍</div>
+            <div class="not-found__heading">Opportunity not found</div>
+            <p class="not-found__sub">This listing may have expired or the link may be incorrect.</p>
+            <a href="opportunities.html" class="not-found__back">← Browse all opportunities</a>
+          </div>
+        </div>`;
+    } else {
+      document.title = `${opp.title} — YourTurn2Intern`;
+
+      // Urgency: flag if deadline is within 7 days
+      const daysLeft = Math.ceil((new Date(opp.deadline.replace(',','')) - new Date()) / (1000*60*60*24));
+      const urgentClass = daysLeft <= 7 ? 'urgent' : '';
+      const urgentLabel = daysLeft <= 7 ? ` ⚡ ${daysLeft}d left` : '';
+
+      const responsibilitiesHTML = opp.responsibilities.map(r => `<li>${r}</li>`).join('');
+      const requirementsHTML = opp.requirements.map(r => `<li>${r}</li>`).join('');
+
+      content.innerHTML = `
+        <div class="container">
+          <div class="back-row fade-in">
+            <a href="opportunities.html" class="back-link">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Back to Opportunities
+            </a>
+          </div>
+
+          <div class="listing-layout">
+
+            <!-- ── Main content ── -->
+            <div class="listing-main fade-in">
+              <div class="listing-org">${opp.org}</div>
+              <h1 class="listing-title">${opp.title}</h1>
+              <div class="listing-tags">
+                <span class="tag tag--blue">${opp.location1}</span>
+                <span class="tag tag--blue">${opp.location2}</span>
+                <span class="tag tag--${TAG_COLOR[opp.type] || 'grey'}">${opp.type}</span>
+                <span class="tag tag--${ROLE_COLOR[opp.role] || 'grey'}">${opp.role}</span>
+                <span class="tag tag--${FMT_COLOR[opp.format] || 'grey'}">${opp.format}</span>
+                ${opp.party ? `<span class="tag tag--${PARTY_COLOR[opp.party] || 'grey'}">${opp.party}</span>` : ''}
+              </div>
+
+              <div class="listing-section">
+                <div class="section-heading">About this opportunity</div>
+                <p>${opp.description}</p>
+              </div>
+
+              <div class="listing-section">
+                <div class="section-heading">What you'll do</div>
+                <ul>${responsibilitiesHTML}</ul>
+              </div>
+
+              <div class="listing-section">
+                <div class="section-heading">What we're looking for</div>
+                <ul>${requirementsHTML}</ul>
+              </div>
+
+              <div class="listing-section">
+                <div class="section-heading">How to apply</div>
+                <p>
+                  To apply, reach out to <strong>${opp.org}</strong> directly through their campaign website or social media.
+                  Include your name, school, and a short note about why you're interested in this role.
+                </p>
+                <p>
+                  No formal résumé required. Just introduce yourself and tell them what excites you about this opportunity.
+                  Applications are reviewed on a rolling basis.
+                </p>
+              </div>
+            </div>
+
+            <!-- ── Sidebar ── -->
+            <aside class="listing-sidebar fade-in-delay">
+              <div class="sidebar-card">
+                <div class="sidebar-apply-btn">Contact to Apply</div>
+                <button class="sidebar-save-btn" id="save-btn">
+                  <svg width="14" height="18" viewBox="0 0 14 18" fill="none">
+                    <path id="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z"
+                      stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  </svg>
+                  Save for later
+                </button>
+
+                <div class="sidebar-details">
+                  <div class="detail-row">
+                    <div class="detail-icon">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <rect x="1" y="3" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M5 1v4M11 1v4M1 7h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="detail-text">
+                      <div class="detail-label">Application deadline</div>
+                      <div class="detail-value ${urgentClass}">${opp.deadline}${urgentLabel}</div>
+                    </div>
+                  </div>
+
+                  <div class="detail-row">
+                    <div class="detail-icon">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1C5.24 1 3 3.24 3 6c0 4.25 5 9 5 9s5-4.75 5-9c0-2.76-2.24-5-5-5z" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+                      </svg>
+                    </div>
+                    <div class="detail-text">
+                      <div class="detail-label">Location</div>
+                      <div class="detail-value">${opp.location1}</div>
+                    </div>
+                  </div>
+
+                  <div class="detail-row">
+                    <div class="detail-icon">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1a7 7 0 100 14A7 7 0 008 1z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 4v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="detail-text">
+                      <div class="detail-label">Format</div>
+                      <div class="detail-value">${opp.format}</div>
+                    </div>
+                  </div>
+
+                  <div class="detail-row">
+                    <div class="detail-icon">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M2 15c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="detail-text">
+                      <div class="detail-label">Role type</div>
+                      <div class="detail-value">${opp.role}</div>
+                    </div>
+                  </div>
+
+                  <div class="detail-row">
+                    <div class="detail-icon">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M5 5h6M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="detail-text">
+                      <div class="detail-label">Category</div>
+                      <div class="detail-value">${opp.type}</div>
+                    </div>
+                  </div>
+
+                  <div class="detail-row">
+                    <div class="detail-icon">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M2 4l6-2 6 2v5c0 3-6 5-6 5S2 12 2 9V4z" stroke="currentColor" stroke-width="1.5"/>
+                      </svg>
+                    </div>
+                    <div class="detail-text">
+                      <div class="detail-label">Cost to apply</div>
+                      <div class="detail-value" style="color:#1E6644">Free</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sidebar-card" style="background:var(--off);border-color:var(--border)">
+                <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);margin-bottom:8px">Posted by</div>
+                <div style="font-weight:700;color:var(--ink);margin-bottom:4px">${opp.org}</div>
+                <div style="font-size:0.84rem;color:var(--ink-soft)">${opp.location2}</div>
+              </div>
+            </aside>
+
+          </div>
+        </div>`;
+
+      // Save button toggle
+      document.getElementById('save-btn').addEventListener('click', function() {
+        this.classList.toggle('saved');
+        const path = document.getElementById('bm-path');
+        if (this.classList.contains('saved')) {
+          this.innerHTML = `<svg width="14" height="18" viewBox="0 0 14 18" fill="none">
+            <path id="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z"
+              stroke="#FBBF24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#FBBF24"/>
+          </svg> Saved!`;
+        } else {
+          this.innerHTML = `<svg width="14" height="18" viewBox="0 0 14 18" fill="none">
+            <path id="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z"
+              stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg> Save for later`;
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

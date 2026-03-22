@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="60">
+  <g stroke="rgb(150,180,215)" fill="rgb(150,180,215)" opacity="0.23" stroke-linecap="round" stroke-linejoin="round">
+    <!--
+      4 cols × 3 rows, 20px spacing, offset 10px
+      (10,10)(30,10)(50,10)(70,10)
+      (10,30)(30,30)(50,30)(70,30)
+      (10,50)(30,50)(50,50)(70,50)
+    -->
+
+    <!-- (10,10) NE arrow -->
+    <path d="M 4,16 L 16,4 M 8,4 L 16,4 L 16,12" stroke-width="1" fill="none"/>
+    <!-- (30,10) tiny dot -->
+    <circle cx="30" cy="10" r="0.9" stroke="none"/>
+    <!-- (50,10) SW arrow -->
+    <path d="M 56,4 L 44,16 M 49,16 L 44,16 L 44,11" stroke-width="1" fill="none"/>
+    <!-- (70,10) tiny dot -->
+    <circle cx="70" cy="10" r="0.9" stroke="none"/>
+
+    <!-- (10,30) open circle -->
+    <circle cx="10" cy="30" r="4" fill="none" stroke-width="1"/>
+    <!-- (30,30) NE arrow -->
+    <path d="M 24,36 L 36,24 M 28,24 L 36,24 L 36,32" stroke-width="1" fill="none"/>
+    <!-- (50,30) open circle -->
+    <circle cx="50" cy="30" r="4" fill="none" stroke-width="1"/>
+    <!-- (70,30) SW arrow -->
+    <path d="M 76,24 L 64,36 M 69,36 L 64,36 L 64,31" stroke-width="1" fill="none"/>
+
+    <!-- (10,50) SW arrow -->
+    <path d="M 16,44 L 4,56 M 9,56 L 4,56 L 4,51" stroke-width="1" fill="none"/>
+    <!-- (30,50) tiny dot -->
+    <circle cx="30" cy="50" r="0.9" stroke="none"/>
+    <!-- (50,50) NE arrow -->
+    <path d="M 44,56 L 56,44 M 48,44 L 56,44 L 56,52" stroke-width="1" fill="none"/>
+    <!-- (70,50) tiny dot -->
+    <circle cx="70" cy="50" r="0.9" stroke="none"/>
+
+  </g>
+</svg>

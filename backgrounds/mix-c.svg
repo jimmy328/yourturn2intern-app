@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="90">
+  <!--
+    "Sparse" — 4×3 grid, 30px spacing, 15px offset
+    Larger rings, more breathing room, arrows at corners
+    (15,15)(45,15)(75,15)(105,15)
+    (15,45)(45,45)(75,45)(105,45)
+    (15,75)(45,75)(75,75)(105,75)
+  -->
+  <g stroke="rgb(150,180,215)" fill="rgb(150,180,215)" opacity="0.23"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Row 1 -->
+    <circle cx="15"  cy="15" r="6"  fill="none" stroke-width="1"/>                    <!-- large ring -->
+    <circle cx="45"  cy="15" r="0.8" stroke="none"/>                                  <!-- tiny dot -->
+    <path d="M 68,22 L 82,8 M 74,8 L 82,8 L 82,14"    stroke-width="1" fill="none"/> <!-- NE arrow @ 75,15 -->
+    <circle cx="105" cy="15" r="0.8" stroke="none"/>                                  <!-- tiny dot -->
+
+    <!-- Row 2 -->
+    <circle cx="15"  cy="45" r="0.8" stroke="none"/>                                  <!-- tiny dot -->
+    <line x1="39" y1="51" x2="51"  y2="39"            stroke-width="1"/>             <!-- tick @ 45,45 -->
+    <circle cx="75"  cy="45" r="0.8" stroke="none"/>                                  <!-- tiny dot -->
+    <circle cx="105" cy="45" r="5"  fill="none" stroke-width="1"/>                    <!-- large ring -->
+
+    <!-- Row 3 -->
+    <path d="M 22,68 L 8,82 M 13,82 L 8,82 L 8,77"    stroke-width="1" fill="none"/> <!-- SW arrow @ 15,75 -->
+    <circle cx="45"  cy="75" r="0.8" stroke="none"/>                                  <!-- tiny dot -->
+    <path d="M 70,75 L 80,75 M 75,70 L 75,80"         stroke-width="1" fill="none"/> <!-- plus @ 75,75 -->
+    <circle cx="105" cy="75" r="3"  fill="none" stroke-width="1"/>                    <!-- small ring -->
+
+  </g>
+</svg>

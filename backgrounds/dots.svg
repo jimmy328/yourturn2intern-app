@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+  <g fill="rgb(150,180,215)" stroke="rgb(150,180,215)" opacity="0.23">
+    <!-- 2x2 grid, 24px spacing, offset 12px -->
+    <!-- (12,12) large open ring -->
+    <circle cx="12" cy="12" r="5.5" fill="none" stroke-width="1"/>
+    <!-- (36,12) small solid dot -->
+    <circle cx="36" cy="12" r="1.4" stroke="none"/>
+    <!-- (12,36) small solid dot -->
+    <circle cx="12" cy="36" r="1.4" stroke="none"/>
+    <!-- (36,36) large open ring -->
+    <circle cx="36" cy="36" r="5.5" fill="none" stroke-width="1"/>
+  </g>
+</svg>

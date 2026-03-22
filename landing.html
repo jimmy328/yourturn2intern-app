@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YourTurn2Intern — Civic Internships for Long Island Students</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ───────────────────────────────────────────── */
+    :root {
+      --blue:       #1D72D4;
+      --blue-dark:  #155DB0;
+      --blue-light: #D6E8FA;
+      --coral:      #E8625C;
+      --coral-dark: #C94F49;
+      --coral-light:#FCDBD9;
+      --ink:        #111827;
+      --ink-mid:    #374151;
+      --ink-soft:   #6B7280;
+      --surface:    #FFFFFF;
+      --off:        #F5F6F8;
+      --border:     #E2E7EE;
+
+      --shadow-blue: 0 4px 24px rgba(29,114,212,0.13), 0 1px 4px rgba(29,114,212,0.08);
+      --shadow-card: 0 2px 12px rgba(37, 38, 42, 0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --shadow-float: 0 8px 32px rgba(26,37,64,0.12), 0 2px 8px rgba(26,37,64,0.06);
+
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    /* ── Reset ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: #FFFFFF;
+      background-image: url('backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ── Utility ─────────────────────────────────────────────── */
+    .container {
+      width: min(1120px, 100%);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    .nav__logo {
+      flex-shrink: 0;
+      line-height: 0;
+    }
+    .nav__logo img {
+      height: 64px;
+      width: auto;
+      max-width: none;
+      margin-left: -18px;
+    }
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav__link {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: color 0.18s ease, background 0.18s ease;
+    }
+    .nav__link:hover {
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+    .nav__link:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+    }
+    .nav__cta {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--coral);
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      margin-left: 8px;
+      transition: background 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease;
+      box-shadow: 0 2px 8px rgba(232,98,92,0.28);
+    }
+    .nav__cta:hover {
+      background: var(--coral-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(232,98,92,0.36);
+    }
+    .nav__cta:active { transform: translateY(0); }
+    .nav__cta:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
+
+    /* Mobile menu button (hidden on desktop) */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      transition: background 0.15s;
+    }
+    .nav__hamburger:hover { background: var(--off); }
+    .nav__hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    .hero {
+      padding-block: 96px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ensure hero content sits above background */
+    .hero__inner { position: relative; z-index: 1; }
+
+    /* Decorative background blobs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(29,114,212,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(232,98,92,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero__inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 56px;
+    }
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--coral);
+      background: var(--coral-light);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .hero__eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--coral);
+      flex-shrink: 0;
+    }
+    .hero__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .hero__heading em {
+      font-style: normal;
+      color: var(--blue);
+    }
+    .hero__heading mark {
+      background: none;
+      color: var(--coral);
+    }
+    .hero__sub {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+
+    /* Search bar */
+    .hero__search {
+      display: flex;
+      gap: 10px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 6px 6px 18px;
+      box-shadow: var(--shadow-float);
+      max-width: 520px;
+      margin-bottom: 28px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hero__search:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(29,114,212,0.1), var(--shadow-float);
+    }
+    .hero__search-input {
+      flex: 1;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--ink);
+      border: none;
+      outline: none;
+      background: transparent;
+      min-width: 0;
+    }
+    .hero__search-input::placeholder { color: var(--ink-soft); }
+    .hero__search-btn {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--blue);
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      transition: background 0.18s ease, transform 0.15s ease;
+      box-shadow: 0 2px 8px rgba(29,114,212,0.3);
+    }
+    .hero__search-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .hero__search-btn:active { transform: translateY(0); }
+    .hero__search-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+    .hero__hints {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+    .hero__hint-label { font-weight: 500; }
+    .hero__hint-tag {
+      display: inline-block;
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: 0.8rem;
+      color: var(--ink-mid);
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .hero__hint-tag:hover {
+      background: var(--blue-light);
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* Hero visual */
+    .hero__visual {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    /* ── Shared card styles ──────────────────────────────────── */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 100px;
+      padding: 4px 12px;
+      letter-spacing: 0.01em;
+    }
+    .tag--blue   { background: #DDEEFF; color: #1558A8; }
+    .tag--coral  { background: var(--coral-light); color: var(--coral-dark); }
+    .tag--green  { background: #E2F4EC; color: #1E6644; }
+    .tag--purple { background: #EDE9FE; color: #5B21B6; }
+    .tag--grey   { background: var(--off); color: var(--ink-mid); border: 1px solid var(--border); }
+
+    /* ── Bookmark button ─────────────────────────────────────── */
+    .bm-btn {
+      background: none;
+      border: none;
+      padding: 2px;
+      cursor: pointer;
+      color: var(--border);
+      flex-shrink: 0;
+      transition: color 0.15s, transform 0.15s;
+      line-height: 0;
+    }
+    .bm-btn:hover { color: var(--ink-soft); transform: scale(1.1); }
+    .bm-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+    .bm-btn .bm-path {
+      fill: none;
+      stroke: currentColor;
+      transition: fill 0.15s, stroke 0.15s;
+    }
+    .bm-btn.saved { color: #FBBF24; transform: scale(1.1); }
+    .bm-btn.saved .bm-path { fill: #FBBF24; stroke: #FBBF24; }
+
+    /* ── Hero opportunity card ───────────────────────────────── */
+    .opp-card {
+      position: relative;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px 20px;
+      box-shadow: var(--shadow-float);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .opp-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-float);
+      border-color: rgba(29,114,212,0.25);
+    }
+    .opp-card__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .opp-card__org {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .opp-card__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+    .opp-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .opp-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .opp-card__deadline {
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+    }
+    .opp-card__cta {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      background: none;
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .opp-card__cta:hover { color: var(--blue); }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    /* ── Appear animation ────────────────────────────────────── */
+    @keyframes appear {
+      0%   { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0);    }
+    }
+    /* opacity set by JS, so elements are always visible without JS */
+    .fade-hidden { opacity: 0; }
+    .animate-appear {
+      animation: appear 0.6s cubic-bezier(0.2, 0.85, 0.45, 1) forwards;
+    }
+    .delay-0   { animation-delay:   0ms; }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+    .delay-600 { animation-delay: 600ms; }
+    .delay-700 { animation-delay: 700ms; }
+
+    /* Stats strip */
+    .hero__stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 8px;
+    }
+    .hero__stat {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      flex: 1;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    .hero__stat-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero__stat-label {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    /* ── Section shared ──────────────────────────────────────── */
+    .section { padding-block: 88px; }
+    .section--alt { background: var(--off); }
+    .section__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .section__label::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+    .section__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .section__heading em { font-style: normal; color: var(--coral); }
+    .section__sub {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── How It Works ────────────────────────────────────────── */
+    .how {
+      text-align: center;
+    }
+    .how__header { margin-bottom: 60px; }
+    .how__header .section__label { justify-content: center; }
+    .how__header .section__label::before { display: none; }
+    .how__header .section__sub { margin-inline: auto; }
+    .how__steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+    /* Connector line */
+    .how__steps::before {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: calc(50% / 3 + 16.67%);
+      right: calc(50% / 3 + 16.67%);
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue-light), var(--blue-light));
+      background-image: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 6px, transparent 6px, transparent 16px);
+      opacity: 0.4;
+      z-index: 0;
+    }
+    .step {
+      position: relative;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px 32px;
+      box-shadow: var(--shadow-card);
+      z-index: 1;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-float);
+      border-color: var(--blue-light);
+    }
+    .step__num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin: 0 auto 20px;
+    }
+    .step:nth-child(1) .step__num { background: var(--blue-light);  color: var(--blue); }
+    .step:nth-child(2) .step__num { background: var(--coral-light); color: var(--coral); }
+    .step:nth-child(3) .step__num { background: var(--blue-light);  color: var(--blue); }
+    .step__icon {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .step__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .step__desc {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+
+    /* ── Opportunities Preview ───────────────────────────────── */
+    .opps__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .opps__link {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 2px solid var(--blue-light);
+      padding-bottom: 2px;
+      transition: border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .opps__link:hover { border-color: var(--blue); }
+    .opps__link:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 2px; }
+    .opps__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .listing-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .listing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-float);
+      border-color: rgba(29,114,212,0.25);
+    }
+    .listing-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .listing-card__org {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .listing-card__bm {
+      font-size: 1rem;
+      color: var(--border);
+      cursor: pointer;
+      transition: color 0.15s, transform 0.15s;
+      line-height: 1;
+    }
+    .listing-card__bm:hover { color: var(--coral); transform: scale(1.15); }
+    .listing-card__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .listing-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .listing-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .listing-card__deadline {
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+    }
+    .listing-card__view {
+      font-family: var(--font-display);
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      background: none;
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .listing-card__view:hover { color: var(--blue); }
+    .listing-card__view:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 2px; }
+
+    /* ── Why section ─────────────────────────────────────────── */
+    .why__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .why__list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .why__item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .why__icon-wrap {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .why__icon-wrap--blue  { background: var(--blue-light); }
+    .why__icon-wrap--coral { background: var(--coral-light); }
+    .why__item-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .why__item-desc {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+    .why__visual {
+      position: relative;
+    }
+    .why__map-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-float);
+    }
+    .why__map-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .why__location-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .why__location {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--off);
+      transition: background 0.15s;
+    }
+    .why__location:hover { background: var(--blue-light); }
+    .why__location-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    .why__location-count {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    .why__badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--coral);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      box-shadow: 0 4px 16px rgba(232,98,92,0.35);
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.1;
+    }
+    .why__badge span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* ── CTA Banner ──────────────────────────────────────────── */
+    .cta-banner {
+      background: var(--blue);
+      padding-block: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 90% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 50%, rgba(232,98,92,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    /* Texture on banner */
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .cta-banner__inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .cta-banner__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .cta-banner__sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-inline: auto;
+      margin-bottom: 40px;
+    }
+    .cta-banner__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--blue);
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 14px 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(0,0,0,0.2); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    .btn-secondary {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      border-radius: var(--radius-sm);
+      padding: 13px 28px;
+      backdrop-filter: blur(4px);
+      transition: background 0.18s, transform 0.15s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
+    .btn-secondary:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.65);
+      padding-block: 56px 32px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer__logo img { height: 36px; margin-bottom: 14px; filter: brightness(10); }
+    .footer__tagline {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+      max-width: 280px;
+    }
+    .footer__email a {
+      font-size: 0.88rem;
+      color: var(--coral-light);
+      transition: color 0.15s;
+    }
+    .footer__email a:hover { color: var(--coral); }
+    .footer__col-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 18px;
+    }
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer__link {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.15s;
+    }
+    .footer__link:hover { color: #fff; }
+    .footer__link:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; border-radius: 2px; }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer__copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero__sub   { max-width: 100%; }
+      .hero__stats { gap: 12px; }
+      .how__steps  { grid-template-columns: 1fr; gap: 16px; }
+      .how__steps::before { display: none; }
+      .opps__grid  { grid-template-columns: 1fr; }
+      .why__grid   { grid-template-columns: 1fr; gap: 40px; }
+      .why__badge  { position: static; display: inline-block; margin-top: 16px; }
+      .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .nav__links { display: none; }
+      .nav__hamburger { display: flex; }
+      .hero { padding-block: 64px 56px; }
+      .section { padding-block: 64px; }
+      .hero__search { flex-direction: column; gap: 8px; padding: 12px; }
+      .hero__search-btn { width: 100%; padding: 13px; }
+      .hero__stats { flex-direction: column; }
+      .opps__header { flex-direction: column; align-items: flex-start; }
+      .footer__bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ───────────────────────────────────────────── -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="/opportunities" class="nav__link">Opportunities</a>
+        <a href="/resources"     class="nav__link">Resources</a>
+        <a href="/login"         class="nav__cta">Log In</a>
+      </nav>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero">
+
+
+    <div class="container hero__inner">
+
+      <div class="hero__content">
+        <div class="hero__eyebrow fade-el delay-0">Long Island Internships</div>
+        <h1 class="hero__heading fade-el delay-100">
+          Your next step<br>
+          in <em>civic</em> leadership<br>
+          starts <mark>here.</mark>
+        </h1>
+        <p class="hero__sub fade-el delay-200">
+          Discover campaign, civic, and nonprofit internship opportunities across Long Island — built for high school students ready to make a difference.
+        </p>
+        <div class="hero__search fade-el delay-300" role="search">
+          <label for="search-input" class="sr-only">Search by town, ZIP, or keyword</label>
+          <input
+            id="search-input"
+            class="hero__search-input"
+            type="search"
+            placeholder="Search by town, ZIP, or keyword…"
+            autocomplete="off"
+          />
+          <button class="hero__search-btn">Browse Opportunities →</button>
+        </div>
+        <div class="hero__hints fade-el delay-400" aria-label="Quick search suggestions">
+          <span class="hero__hint-label">Popular:</span>
+          <button class="hero__hint-tag">Huntington</button>
+          <button class="hero__hint-tag">Suffolk County</button>
+          <button class="hero__hint-tag">Nassau County</button>
+          <button class="hero__hint-tag">Remote</button>
+        </div>
+      </div>
+
+      <div class="hero__visual fade-el delay-200" aria-hidden="true">
+        <!-- Featured opportunity card -->
+        <div class="opp-card">
+          <div class="opp-card__header">
+            <span class="opp-card__org">Suffolk County Legislature</span>
+            <button class="bm-btn" aria-label="Bookmark this listing">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="opp-card__title">Legislative Communications Intern</div>
+          <div class="opp-card__tags">
+            <span class="tag tag--blue">Hauppauge, NY</span>
+            <span class="tag tag--blue">Suffolk County</span>
+            <span class="tag tag--coral">Government</span>
+            <span class="tag tag--purple">Intern</span>
+            <span class="tag tag--green">Hybrid</span>
+          </div>
+          <div class="opp-card__footer">
+            <span class="opp-card__deadline">Deadline: Apr 15</span>
+            <a href="#" class="opp-card__cta">View Details →</a>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <div class="hero__stat-num">40+</div>
+            <div class="hero__stat-label">Active Listings</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">15+</div>
+            <div class="hero__stat-label">Towns Covered</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">Free</div>
+            <div class="hero__stat-label">Always</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── How It Works ──────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container how">
+      <div class="how__header fade-el">
+        <div class="section__label">How It Works</div>
+        <h2 class="section__heading">Find your internship in <em>three steps</em></h2>
+        <p class="section__sub">No experience required. No connections needed. Just show up ready to learn.</p>
+      </div>
+      <div class="how__steps">
+        <div class="step fade-el delay-100">
+          <div class="step__num">1</div>
+          <div class="step__icon">🔍</div>
+          <div class="step__title">Browse &amp; Search</div>
+          <p class="step__desc">Explore all opportunities freely. Filter by town, county, type, or format — no account needed to browse.</p>
+        </div>
+        <div class="step fade-el delay-200">
+          <div class="step__num">2</div>
+          <div class="step__icon">🗂️</div>
+          <div class="step__title">Bookmark &amp; Save</div>
+          <p class="step__desc">Create a free account to bookmark listings and view full details. Sign up takes 30 seconds — just an email and password.</p>
+        </div>
+        <div class="step fade-el delay-200">
+          <div class="step__num">3</div>
+          <div class="step__icon">🚀</div>
+          <div class="step__title">Apply &amp; Go</div>
+          <p class="step__desc">Each listing links directly to the organization's application. We show you the door — you walk through it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Opportunities Preview ─────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="opps__header fade-el">
+        <div>
+          <div class="section__label">Open Opportunities</div>
+          <h2 class="section__heading">Recent listings on Long Island</h2>
+        </div>
+        <a href="/opportunities" class="opps__link">See all opportunities →</a>
+      </div>
+      <div class="opps__grid">
+
+        <div class="listing-card fade-el delay-100">
+          <div class="listing-card__header">
+            <span class="listing-card__org">Huntington Town Council</span>
+            <button class="bm-btn" aria-label="Bookmark this listing">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="listing-card__title">Campaign Field Organizer Intern</div>
+          <div class="listing-card__tags">
+            <span class="tag tag--blue">Huntington, NY</span>
+            <span class="tag tag--blue">Suffolk County</span>
+            <span class="tag tag--coral">Campaign</span>
+            <span class="tag tag--purple">Intern</span>
+            <span class="tag tag--green">In-Person</span>
+          </div>
+          <div class="listing-card__footer">
+            <span class="listing-card__deadline">Deadline: May 1</span>
+            <a href="#" class="listing-card__view">View Details →</a>
+          </div>
+        </div>
+
+        <div class="listing-card fade-el delay-200">
+          <div class="listing-card__header">
+            <span class="listing-card__org">Long Island Civic Alliance</span>
+            <button class="bm-btn" aria-label="Bookmark this listing">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="listing-card__title">Community Outreach &amp; Social Media Intern</div>
+          <div class="listing-card__tags">
+            <span class="tag tag--blue">Garden City, NY</span>
+            <span class="tag tag--blue">Nassau County</span>
+            <span class="tag tag--coral">Nonprofit</span>
+            <span class="tag tag--purple">Intern</span>
+            <span class="tag tag--green">Remote</span>
+          </div>
+          <div class="listing-card__footer">
+            <span class="listing-card__deadline">Deadline: Apr 22</span>
+            <a href="#" class="listing-card__view">View Details →</a>
+          </div>
+        </div>
+
+        <div class="listing-card fade-el delay-300">
+          <div class="listing-card__header">
+            <span class="listing-card__org">Nassau County Office</span>
+            <button class="bm-btn" aria-label="Bookmark this listing">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="listing-card__title">Policy Research Intern</div>
+          <div class="listing-card__tags">
+            <span class="tag tag--blue">Mineola, NY</span>
+            <span class="tag tag--blue">Nassau County</span>
+            <span class="tag tag--coral">Government</span>
+            <span class="tag tag--purple">Intern</span>
+            <span class="tag tag--green">Hybrid</span>
+          </div>
+          <div class="listing-card__footer">
+            <span class="listing-card__deadline">Deadline: Apr 30</span>
+            <a href="#" class="listing-card__view">View Details →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why YT2I ───────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container why__grid">
+
+      <div class="fade-el">
+        <div class="section__label">Why YourTurn2Intern</div>
+        <h2 class="section__heading">Built for Long Island<br>students, by Long Island<br>students.</h2>
+        <div class="why__list">
+          <div class="why__item">
+            <div class="why__icon-wrap why__icon-wrap--blue">🗺️</div>
+            <div>
+              <div class="why__item-title">Hyperlocal Focus</div>
+              <p class="why__item-desc">Every opportunity is based on Long Island — no national noise, just your backyard.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__icon-wrap why__icon-wrap--coral">🏛️</div>
+            <div>
+              <div class="why__item-title">Civic &amp; Campaign Ready</div>
+              <p class="why__item-desc">From local nonprofits to county government offices — real civic experience that matters.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__icon-wrap why__icon-wrap--blue">⚡</div>
+            <div>
+              <div class="why__item-title">Free, Fast &amp; Simple</div>
+              <p class="why__item-desc">No fees, no hoops. Sign up in seconds and start bookmarking opportunities instantly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why__visual fade-el delay-200">
+        <div class="why__map-card">
+          <div class="why__map-label">Opportunities by Location</div>
+          <div class="why__location-list">
+            <div class="why__location">
+              <span class="why__location-name">Huntington</span>
+              <span class="why__location-count">12 listings</span>
+            </div>
+            <div class="why__location">
+              <span class="why__location-name">Nassau County</span>
+              <span class="why__location-count">11 listings</span>
+            </div>
+            <div class="why__location">
+              <span class="why__location-name">Hauppauge</span>
+              <span class="why__location-count">8 listings</span>
+            </div>
+            <div class="why__location">
+              <span class="why__location-name">Remote (LI-based)</span>
+              <span class="why__location-count">7 listings</span>
+            </div>
+            <div class="why__location">
+              <span class="why__location-name">Other Towns</span>
+              <span class="why__location-count">6 listings</span>
+            </div>
+          </div>
+        </div>
+        <div class="why__badge">
+          100%
+          <span>Long Island</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ─────────────────────────────────────────────── -->
+  <section class="cta-banner">
+    <div class="container cta-banner__inner fade-el">
+      <h2 class="cta-banner__heading">Ready to take your turn?</h2>
+      <p class="cta-banner__sub">
+        Create your free account and start discovering civic internships in your community today.
+      </p>
+      <div class="cta-banner__actions">
+        <a href="/signup" class="btn-primary">Create Free Account</a>
+        <a href="/opportunities" class="btn-secondary">Browse First →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo">
+            <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+          </div>
+          <p class="footer__tagline">
+            Connecting Long Island high school students with civic internship opportunities.
+          </p>
+          <div class="footer__email">
+            <a href="mailto:hello@yourturn2intern.org">hello@yourturn2intern.org</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Navigate</div>
+          <ul class="footer__links">
+            <li><a href="/opportunities" class="footer__link">Opportunities</a></li>
+            <li><a href="/resources"     class="footer__link">Resources</a></li>
+            <li><a href="/login"         class="footer__link">Log In</a></li>
+            <li><a href="/signup"        class="footer__link">Sign Up</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Opportunities</div>
+          <ul class="footer__links">
+            <li><a href="/opportunities?type=campaign"   class="footer__link">Campaign</a></li>
+            <li><a href="/opportunities?type=civic"      class="footer__link">Civic</a></li>
+            <li><a href="/opportunities?type=government" class="footer__link">Government</a></li>
+            <li><a href="/opportunities?type=nonprofit"  class="footer__link">Nonprofit</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2026 YourTurn2Intern · yourturn2intern.org · All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+    // ── Progressive enhancement: hide then animate ────────────
+    // Hide all fade elements first (JS-only, so no-JS users see everything)
+    document.querySelectorAll('.fade-el').forEach(el => el.classList.add('fade-hidden'));
+
+    // ── Hero: fire on next frame so hide takes effect first ───
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.hero .fade-el').forEach(el => {
+        el.classList.add('animate-appear');
+      });
+    });
+
+    // ── Scroll sections: IntersectionObserver ─────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-el').forEach(el => {
+      // Skip hero elements — they fire immediately above
+      if (!el.closest('.hero')) observer.observe(el);
+    });
+
+    // Quick-search hints populate the search bar
+    document.querySelectorAll('.hero__hint-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        document.getElementById('search-input').value = tag.textContent.trim();
+        document.getElementById('search-input').focus();
+      });
+    });
+
+    // Bookmark toggle (visual only)
+    document.querySelectorAll('.bm-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('saved');
+      });
+    });
+  </script>
+
+</body>
+</html>
