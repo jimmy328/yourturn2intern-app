@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat /Users/student/Desktop/YourTurn2Intern/PROJECT_PLAN.md | jq -Rs '{hookSpecificOutput: {hookEventName: \"PreToolUse\", additionalContext: \"PROJECT_PLAN.md Context:\\n\\n\" + .}}'",
+            "statusMessage": "Reading PROJECT_PLAN.md for context..."
+          }
+        ]
+      }
+    ]
+  }
+}
