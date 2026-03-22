@@ -1,18 +1,8 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/index.html",
-      "destination": "/index.html"
-    },
-    {
-      "src": "/(.*)\\.html",
-      "destination": "/$1.html"
-    },
-    {
-      "src": "/(.*)",
-      "destination": "/index.html",
-      "status": 200
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs18.x"
     }
-  ]
+  }
 }
