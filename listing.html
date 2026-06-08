@@ -327,9 +327,10 @@
         <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
       </a>
       <nav class="nav__links" aria-label="Main navigation">
-        <a href="listing.html" class="nav__link nav__link--active">Opportunities</a>
-        <a href="resources.html"     class="nav__link">Resources</a>
-        <a href="#.html"         class="nav__cta">Log In</a>
+        <a href="opportunities.html" class="nav__link nav__link--active">Opportunities</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="account.html" class="nav__link" id="nav-account" style="display:none">My Account</a>
+        <a href="opportunities.html" class="nav__cta" id="nav-login">Log In</a>
       </nav>
     </div>
   </header>
@@ -346,9 +347,9 @@
       <div class="footer__bottom">
         <span class="footer__copy">&copy; 2026 YourTurn2Intern · yourturn2intern.org</span>
         <div class="footer__links-row">
-          <a href="listing.html" class="footer__link">Opportunities</a>
-          <a href="resources.html"     class="footer__link">Resources</a>
-          <a href="#.html"         class="footer__link">Log In</a>
+          <a href="opportunities.html" class="footer__link">Opportunities</a>
+          <a href="resources.html" class="footer__link">Resources</a>
+          <a href="account.html" class="footer__link">My Account</a>
         </div>
       </div>
     </div>
@@ -610,21 +611,49 @@
           </div>
         </div>`;
 
-      // Save button toggle
-      document.getElementById('save-btn').addEventListener('click', function() {
-        this.classList.toggle('saved');
-        const path = document.getElementById('bm-path');
-        if (this.classList.contains('saved')) {
-          this.innerHTML = `<svg width="14" height="18" viewBox="0 0 14 18" fill="none">
-            <path id="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z"
-              stroke="#FBBF24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#FBBF24"/>
-          </svg> Saved!`;
+      // Auth helpers
+      function getUser()     { try { return JSON.parse(localStorage.getItem('yt2i_user')); } catch { return null; } }
+      function getAccounts() { try { return JSON.parse(localStorage.getItem('yt2i_accounts') || '{}'); } catch { return {}; } }
+      function saveAccounts(a) { localStorage.setItem('yt2i_accounts', JSON.stringify(a)); }
+
+      // Update nav
+      const loggedIn = !!getUser();
+      document.getElementById('nav-login').style.display   = loggedIn ? 'none' : '';
+      document.getElementById('nav-account').style.display = loggedIn ? '' : 'none';
+
+      // Check if already saved
+      function isOppSaved() {
+        const user = getUser(); if (!user) return false;
+        const accounts = getAccounts();
+        const saved = accounts[user.email]?.savedListings || [];
+        return saved.includes(opp.id);
+      }
+      function setSaveState(btn, saved) {
+        btn.classList.toggle('saved', saved);
+        btn.innerHTML = saved
+          ? `<svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M1 1h12v15.5l-6-3.75L1 16.5V1z" stroke="#FBBF24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="#FBBF24"/></svg> Saved!`
+          : `<svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M1 1h12v15.5l-6-3.75L1 16.5V1z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> Save for later`;
+      }
+
+      const saveBtn = document.getElementById('save-btn');
+      setSaveState(saveBtn, isOppSaved());
+
+      saveBtn.addEventListener('click', function() {
+        const user = getUser();
+        if (!user) { window.location.href = 'opportunities.html'; return; }
+        const accounts = getAccounts();
+        const acc = accounts[user.email] || {};
+        let saved = acc.savedListings || [];
+        const alreadySaved = saved.includes(opp.id);
+        if (alreadySaved) {
+          saved = saved.filter(x => x !== opp.id);
         } else {
-          this.innerHTML = `<svg width="14" height="18" viewBox="0 0 14 18" fill="none">
-            <path id="bm-path" d="M1 1h12v15.5l-6-3.75L1 16.5V1z"
-              stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg> Save for later`;
+          saved.push(opp.id);
         }
+        acc.savedListings = saved;
+        accounts[user.email] = acc;
+        saveAccounts(accounts);
+        setSaveState(saveBtn, !alreadySaved);
       });
     }
   </script>

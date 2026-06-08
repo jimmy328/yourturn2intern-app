@@ -502,6 +502,127 @@
       animation: appear 0.4s cubic-bezier(0.2, 0.85, 0.45, 1) both;
     }
 
+    /* ── Auth Modal ──────────────────────────────────────────── */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(17,24,39,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1; pointer-events: all;
+    }
+    .modal {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 64px rgba(26,37,64,0.2), 0 4px 16px rgba(26,37,64,0.08);
+      width: 100%; max-width: 420px;
+      padding: 40px 36px 36px;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.25s cubic-bezier(0.2, 0.85, 0.45, 1);
+    }
+    .modal-backdrop.open .modal {
+      transform: translateY(0) scale(1);
+    }
+    .modal__close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-soft); background: var(--off);
+      transition: background 0.15s, color 0.15s;
+    }
+    .modal__close:hover { background: var(--border); color: var(--ink); }
+    .modal-wrap { position: relative; }
+    .modal__logo {
+      display: block;
+      height: 36px; width: auto; margin-bottom: 20px;
+    }
+    .modal__heading {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 900;
+      letter-spacing: -0.02em; color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .modal__sub {
+      font-size: 0.88rem; color: var(--ink-soft);
+      margin-bottom: 28px; line-height: 1.5;
+    }
+
+    /* Tabs */
+    .modal__tabs {
+      display: flex; gap: 0;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .modal__tab {
+      flex: 1; padding: 10px 0;
+      font-family: var(--font-display);
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--ink-soft);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .modal__tab.active { color: var(--blue); border-color: var(--blue); }
+
+    /* Form */
+    .auth-form { display: none; flex-direction: column; gap: 16px; }
+    .auth-form.active { display: flex; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field label {
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--ink-mid); letter-spacing: 0.02em;
+    }
+    .form-field input {
+      font-family: var(--font-body); font-size: 0.95rem;
+      color: var(--ink); background: var(--off);
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      padding: 10px 14px; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-field input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(29,114,212,0.1);
+      background: #fff;
+    }
+    .auth-submit {
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 800;
+      color: #fff; background: var(--blue);
+      padding: 13px 20px; border-radius: var(--radius-sm);
+      transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+      box-shadow: 0 2px 8px rgba(29,114,212,0.28);
+      margin-top: 4px;
+    }
+    .auth-submit:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .auth-error {
+      font-size: 0.84rem; color: var(--coral-dark);
+      background: var(--coral-light); border-radius: var(--radius-sm);
+      padding: 10px 14px; display: none;
+    }
+    .auth-error.visible { display: block; }
+    .modal__divider {
+      text-align: center; font-size: 0.8rem;
+      color: var(--ink-soft); margin: 4px 0;
+      position: relative;
+    }
+    .modal__divider::before, .modal__divider::after {
+      content: ''; position: absolute; top: 50%;
+      width: 42%; height: 1px; background: var(--border);
+    }
+    .modal__divider::before { left: 0; }
+    .modal__divider::after { right: 0; }
+    .modal__switch {
+      text-align: center; font-size: 0.84rem; color: var(--ink-soft);
+    }
+    .modal__switch-link {
+      color: var(--blue); font-weight: 700; cursor: pointer;
+    }
+    .modal__switch-link:hover { text-decoration: underline; }
+
     /* ── Responsive ──────────────────────────────────────────── */
     @media (max-width: 960px) {
       .opps-grid { grid-template-columns: repeat(2, 1fr); }
@@ -523,9 +644,10 @@
         <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
       </a>
       <nav class="nav__links" aria-label="Main navigation">
-        <a href="listing.html" class="nav__link nav__link--active">Opportunities</a>
-        <a href="resources.html"     class="nav__link">Resources</a>
-        <a href="#.html"         class="nav__cta">Log In</a>
+        <a href="opportunities.html" class="nav__link nav__link--active">Opportunities</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="account.html" class="nav__link" id="nav-account" style="display:none">My Account</a>
+        <button class="nav__cta" id="nav-login">Log In</button>
       </nav>
     </div>
   </header>
@@ -679,6 +801,60 @@
     </div>
   </main>
 
+  <!-- ── Auth Modal ───────────────────────────────────────────────── -->
+  <div class="modal-backdrop" id="auth-modal" role="dialog" aria-modal="true" aria-label="Sign in">
+    <div class="modal-wrap">
+      <div class="modal">
+        <button class="modal__close" id="modal-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" class="modal__logo" />
+        <div class="modal__heading">View this opportunity</div>
+        <p class="modal__sub">Sign in or create a free account to view full details, save listings, and track your outreach.</p>
+
+        <div class="modal__tabs">
+          <button class="modal__tab active" data-tab="signin">Sign In</button>
+          <button class="modal__tab" data-tab="signup">Create Account</button>
+        </div>
+
+        <!-- Sign In -->
+        <form class="auth-form active" id="signin-form" novalidate>
+          <div class="auth-error" id="signin-error"></div>
+          <div class="form-field">
+            <label for="signin-email">Email address</label>
+            <input type="email" id="signin-email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="form-field">
+            <label for="signin-password">Password</label>
+            <input type="password" id="signin-password" placeholder="••••••••" autocomplete="current-password" required />
+          </div>
+          <button type="submit" class="auth-submit">Sign In</button>
+        </form>
+
+        <!-- Create Account -->
+        <form class="auth-form" id="signup-form" novalidate>
+          <div class="auth-error" id="signup-error"></div>
+          <div class="form-field">
+            <label for="signup-name">Full name</label>
+            <input type="text" id="signup-name" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <label for="signup-email">Email address</label>
+            <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="form-field">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="At least 6 characters" autocomplete="new-password" required />
+          </div>
+          <button type="submit" class="auth-submit">Create Account</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
   <!-- ── Footer ─────────────────────────────────────────────────── -->
   <footer class="footer">
     <div class="container">
@@ -688,9 +864,9 @@
       <div class="footer__bottom">
         <span class="footer__copy">&copy; 2026 YourTurn2Intern · yourturn2intern.org</span>
         <div class="footer__links-row">
-          <a href="listing.html" class="footer__link">Opportunities</a>
-          <a href="resources.html"     class="footer__link">Resources</a>
-          <a href="#.html"         class="footer__link">Log In</a>
+          <a href="opportunities.html" class="footer__link">Opportunities</a>
+          <a href="resources.html" class="footer__link">Resources</a>
+          <a href="account.html" class="footer__link">My Account</a>
         </div>
       </div>
     </div>
@@ -949,8 +1125,112 @@
     });
 
     // ─────────────────────────────────────────────────────────────
+    // AUTH STATE
+    // ─────────────────────────────────────────────────────────────
+    function getUser() {
+      try { return JSON.parse(localStorage.getItem('yt2i_user')); } catch { return null; }
+    }
+    function setUser(user) { localStorage.setItem('yt2i_user', JSON.stringify(user)); }
+    function isLoggedIn() { return !!getUser(); }
+
+    function updateNavAuth() {
+      const loggedIn = isLoggedIn();
+      document.getElementById('nav-login').style.display  = loggedIn ? 'none' : '';
+      document.getElementById('nav-account').style.display = loggedIn ? '' : 'none';
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // MODAL
+    // ─────────────────────────────────────────────────────────────
+    let pendingCardHref = null;
+
+    function openModal(href) {
+      pendingCardHref = href || null;
+      document.getElementById('auth-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('signin-email').focus();
+    }
+    function closeModal() {
+      document.getElementById('auth-modal').classList.remove('open');
+      document.body.style.overflow = '';
+      pendingCardHref = null;
+    }
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    document.getElementById('auth-modal').addEventListener('click', e => {
+      if (e.target === document.getElementById('auth-modal')) closeModal();
+    });
+    document.getElementById('nav-login').addEventListener('click', () => openModal(null));
+
+    // Tab switching
+    document.querySelectorAll('.modal__tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.modal__tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab + '-form').classList.add('active');
+      });
+    });
+
+    // Sign in
+    document.getElementById('signin-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('signin-email').value.trim();
+      const pass  = document.getElementById('signin-password').value;
+      const err   = document.getElementById('signin-error');
+
+      const stored = JSON.parse(localStorage.getItem('yt2i_accounts') || '{}');
+      if (!stored[email]) {
+        err.textContent = 'No account found with that email.'; err.classList.add('visible'); return;
+      }
+      if (stored[email].password !== pass) {
+        err.textContent = 'Incorrect password.'; err.classList.add('visible'); return;
+      }
+      err.classList.remove('visible');
+      setUser({ email, name: stored[email].name });
+      updateNavAuth();
+      closeModal();
+      if (pendingCardHref) window.location.href = pendingCardHref;
+    });
+
+    // Create account
+    document.getElementById('signup-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const pass  = document.getElementById('signup-password').value;
+      const err   = document.getElementById('signup-error');
+
+      if (!name) { err.textContent = 'Please enter your name.'; err.classList.add('visible'); return; }
+      if (!email || !email.includes('@')) { err.textContent = 'Please enter a valid email.'; err.classList.add('visible'); return; }
+      if (pass.length < 6) { err.textContent = 'Password must be at least 6 characters.'; err.classList.add('visible'); return; }
+
+      const accounts = JSON.parse(localStorage.getItem('yt2i_accounts') || '{}');
+      if (accounts[email]) { err.textContent = 'An account with that email already exists.'; err.classList.add('visible'); return; }
+
+      accounts[email] = { name, password: pass, savedListings: [], contactedListings: [] };
+      localStorage.setItem('yt2i_accounts', JSON.stringify(accounts));
+      setUser({ email, name });
+      updateNavAuth();
+      closeModal();
+      if (pendingCardHref) window.location.href = pendingCardHref;
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // INTERCEPT CARD CLICKS
+    // ─────────────────────────────────────────────────────────────
+    document.getElementById('opps-grid').addEventListener('click', e => {
+      if (isLoggedIn()) return;
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      e.preventDefault();
+      openModal(link.href);
+    });
+
+    // ─────────────────────────────────────────────────────────────
     // INIT
     // ─────────────────────────────────────────────────────────────
+    updateNavAuth();
     applyFilters();
   // ── Hide nav + filter bar on scroll down, show on scroll up ─
   (function () {

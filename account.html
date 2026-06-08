@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:        #1D72D4;
+      --blue-dark:   #155DB0;
+      --blue-light:  #D6E8FA;
+      --coral:       #E8625C;
+      --coral-dark:  #C94F49;
+      --coral-light: #FCDBD9;
+      --green:       #1E6644;
+      --green-light: #E2F4EC;
+      --ink:         #111827;
+      --ink-mid:     #374151;
+      --ink-soft:    #6B7280;
+      --surface:     #FFFFFF;
+      --off:         #F5F6F8;
+      --border:      #E2E7EE;
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --shadow-float: 0 8px 32px rgba(26,37,64,0.12), 0 2px 8px rgba(26,37,64,0.06);
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: #FFFFFF;
+      background-image: url('backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img  { display: block; max-width: 100%; }
+    a    { color: inherit; text-decoration: none; }
+    ul   { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .container {
+      width: min(1040px, 100%);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__link--active { color: var(--blue); font-weight: 700; }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+      transition: background 0.18s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(232,98,92,0.28);
+    }
+    .nav__cta:hover { background: var(--coral-dark); transform: translateY(-1px); }
+    .nav__signout {
+      font-size: 0.88rem; font-weight: 600; color: var(--ink-soft);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav__signout:hover { color: var(--coral); background: var(--coral-light); }
+
+    /* ── Page header ─────────────────────────────────────────── */
+    .page-header {
+      padding-block: 48px 36px;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+    .page-header__label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 10px;
+    }
+    .page-header__label::before {
+      content: ''; width: 20px; height: 2px;
+      background: var(--blue); border-radius: 2px;
+    }
+    .page-header__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .page-header__sub { font-size: 0.95rem; color: var(--ink-soft); }
+
+    /* ── Layout ──────────────────────────────────────────────── */
+    .account-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 32px;
+      padding-block: 36px 64px;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .account-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ── Sidebar nav ─────────────────────────────────────────── */
+    .account-nav {
+      position: sticky; top: 96px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-card);
+    }
+    .account-nav__item {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem; font-weight: 600; color: var(--ink-mid);
+      transition: background 0.15s, color 0.15s;
+      cursor: pointer;
+    }
+    .account-nav__item:hover { background: var(--off); color: var(--ink); }
+    .account-nav__item.active { background: var(--blue-light); color: var(--blue); }
+    .account-nav__item svg { flex-shrink: 0; }
+    .account-nav__badge {
+      margin-left: auto;
+      background: var(--blue); color: #fff;
+      font-size: 0.72rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 100px;
+      display: none;
+    }
+    .account-nav__badge.visible { display: inline-block; }
+
+    /* ── Panel ───────────────────────────────────────────────── */
+    .account-panel { display: none; }
+    .account-panel.active { display: block; }
+
+    .panel-heading {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 900;
+      color: var(--ink); margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* ── Profile form ────────────────────────────────────────── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 540px) { .profile-grid { grid-template-columns: 1fr; } }
+    .profile-grid .full { grid-column: 1 / -1; }
+
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field label {
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--ink-mid); letter-spacing: 0.02em;
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      font-family: var(--font-body); font-size: 0.95rem;
+      color: var(--ink); background: var(--off);
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      padding: 10px 14px; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(29,114,212,0.1);
+      background: #fff;
+    }
+    .form-field textarea { resize: vertical; min-height: 80px; }
+    .form-field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    .save-btn {
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 800;
+      color: #fff; background: var(--blue);
+      padding: 12px 28px; border-radius: var(--radius-sm);
+      transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+      box-shadow: 0 2px 8px rgba(29,114,212,0.28);
+      margin-top: 8px;
+    }
+    .save-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .save-success {
+      display: none; font-size: 0.88rem; font-weight: 600;
+      color: var(--green); margin-top: 10px;
+    }
+    .save-success.visible { display: block; }
+
+    /* ── Preferences ─────────────────────────────────────────── */
+    .pref-section { margin-bottom: 28px; }
+    .pref-section__heading {
+      font-size: 0.82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ink-soft); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 6px;
+      position: relative;
+    }
+    .info-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      color: var(--ink-soft); background: var(--off);
+      border: 1.5px solid var(--border);
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      flex-shrink: 0;
+    }
+    .info-btn:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-light); }
+    .info-popover {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px); left: 0;
+      width: 280px;
+      background: var(--ink);
+      color: rgba(255,255,255,0.85);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      font-size: 0.82rem; font-weight: 400;
+      line-height: 1.55; letter-spacing: 0;
+      text-transform: none;
+      box-shadow: var(--shadow-float);
+      z-index: 200;
+    }
+    .info-popover.open { display: block; }
+    .info-popover strong { color: #fff; font-weight: 700; display: block; margin-bottom: 8px; font-size: 0.84rem; }
+    .info-popover p { margin-bottom: 8px; color: rgba(255,255,255,0.75); }
+    .info-popover p:last-child { margin-bottom: 0; }
+    .pref-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pref-pill {
+      font-size: 0.84rem; font-weight: 600; color: var(--ink-mid);
+      background: var(--off); border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 7px 16px; cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .pref-pill:hover { border-color: var(--ink-soft); }
+    .pref-pill.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+    /* ── Listing cards (saved / contacted) ───────────────────── */
+    .listing-list { display: flex; flex-direction: column; gap: 14px; }
+    .listing-item {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-card);
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+    }
+    .listing-item__info { min-width: 0; flex: 1; }
+    .listing-item__org {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ink-soft); margin-bottom: 4px;
+    }
+    .listing-item__title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .listing-item__meta {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .tag {
+      display: inline-flex; align-items: center;
+      font-size: 0.72rem; font-weight: 600;
+      border-radius: 100px; padding: 3px 10px;
+    }
+    .tag--blue   { background: #DDEEFF; color: #1558A8; }
+    .tag--coral  { background: var(--coral-light); color: var(--coral-dark); }
+    .tag--green  { background: var(--green-light); color: var(--green); }
+    .tag--purple { background: #EDE9FE; color: #5B21B6; }
+    .tag--grey   { background: var(--off); color: var(--ink-mid); border: 1px solid var(--border); }
+
+    .listing-item__actions {
+      display: flex; flex-direction: column; gap: 8px;
+      flex-shrink: 0; align-items: flex-end;
+    }
+    .action-btn {
+      font-size: 0.8rem; font-weight: 700;
+      padding: 7px 14px; border-radius: var(--radius-sm);
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      border: 1.5px solid var(--border);
+      color: var(--ink-mid); background: var(--off);
+    }
+    .action-btn:hover { border-color: var(--ink-soft); color: var(--ink); }
+    .action-btn--view {
+      background: var(--blue-light); border-color: var(--blue);
+      color: var(--blue-dark);
+    }
+    .action-btn--view:hover { background: var(--blue); color: #fff; }
+    .action-btn--contacted {
+      background: var(--green-light); border-color: var(--green);
+      color: var(--green);
+    }
+    .action-btn--remove { color: var(--coral); border-color: var(--coral-light); }
+    .action-btn--remove:hover { background: var(--coral-light); border-color: var(--coral); }
+
+    .empty-panel {
+      text-align: center; padding: 60px 24px;
+      color: var(--ink-soft); font-size: 0.95rem;
+    }
+    .empty-panel__icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .empty-panel__heading {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .empty-panel a { color: var(--blue); font-weight: 600; }
+
+    /* ── Not-logged-in state ─────────────────────────────────── */
+    .auth-wall {
+      text-align: center; padding: 100px 24px;
+    }
+    .auth-wall__icon { font-size: 3rem; margin-bottom: 16px; }
+    .auth-wall__heading {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .auth-wall__sub { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 24px; }
+    .auth-wall__btn {
+      display: inline-block;
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 800;
+      color: #fff; background: var(--blue);
+      padding: 12px 28px; border-radius: var(--radius);
+      transition: background 0.15s;
+    }
+    .auth-wall__btn:hover { background: var(--blue-dark); }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    .footer {
+      background: var(--ink); color: rgba(255,255,255,0.65);
+      padding-block: 48px 28px; margin-top: 40px;
+    }
+    .footer__bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer__logo img { height: 36px; filter: brightness(10); margin-bottom: 12px; }
+    .footer__copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+    .footer__links-row { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer__link { font-size: 0.84rem; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer__link:hover { color: #fff; }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: appear 0.35s cubic-bezier(0.2,0.85,0.45,1) both; }
+
+    @media (max-width: 640px) { .nav__links { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ──────────────────────────────────────────────────── -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a href="landing.html" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="opportunities.html" class="nav__link">Opportunities</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="account.html" class="nav__link nav__link--active">My Account</a>
+        <button class="nav__signout" id="nav-signout">Sign Out</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Auth wall (shown when not logged in) ──────────────────── -->
+  <div id="auth-wall" style="display:none">
+    <div class="auth-wall">
+      <div class="auth-wall__icon">🔒</div>
+      <div class="auth-wall__heading">Sign in to view your account</div>
+      <p class="auth-wall__sub">You need to be signed in to access your account page.</p>
+      <a href="opportunities.html" class="auth-wall__btn">Browse Opportunities &amp; Sign In</a>
+      <p style="margin-top:16px;font-size:0.84rem;color:var(--ink-soft)">
+        Just want to see what it looks like?
+        <button id="demo-btn" style="color:var(--blue);font-weight:700;font-size:0.84rem;cursor:pointer;background:none;border:none;font-family:inherit">Load demo account</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Account content ───────────────────────────────────────── -->
+  <div id="account-content" style="display:none">
+
+    <div class="page-header">
+      <div class="container">
+        <div class="page-header__label">Account</div>
+        <h1 class="page-header__heading" id="welcome-heading">My Account</h1>
+        <p class="page-header__sub">Manage your profile, saved listings, and outreach tracking.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="account-layout fade-in">
+
+        <!-- ── Sidebar nav ──────────────────────────────────── -->
+        <aside>
+          <nav class="account-nav">
+            <button class="account-nav__item active" data-panel="profile">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M2 15c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Profile &amp; Info
+            </button>
+            <button class="account-nav__item" data-panel="preferences">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              Preferences
+            </button>
+            <button class="account-nav__item" data-panel="saved">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none">
+                <path d="M1 1h12v15.5l-6-3.75L1 16.5V1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Saved Listings
+              <span class="account-nav__badge" id="saved-badge">0</span>
+            </button>
+            <button class="account-nav__item" data-panel="contacted">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 4l6 5 6-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              Contacted
+              <span class="account-nav__badge" id="contacted-badge">0</span>
+            </button>
+          </nav>
+        </aside>
+
+        <!-- ── Panels ─────────────────────────────────────── -->
+        <main>
+
+          <!-- Profile -->
+          <div class="account-panel active" id="panel-profile">
+            <div class="panel-heading">Profile &amp; Personal Info</div>
+            <form id="profile-form">
+              <div class="profile-grid">
+                <div class="form-field">
+                  <label for="p-name">Full name</label>
+                  <input type="text" id="p-name" placeholder="Your full name" />
+                </div>
+                <div class="form-field">
+                  <label for="p-email">Email address</label>
+                  <input type="email" id="p-email" placeholder="you@example.com" readonly style="opacity:0.6;cursor:not-allowed" />
+                </div>
+                <div class="form-field">
+                  <label for="p-school">School</label>
+                  <input type="text" id="p-school" placeholder="e.g. Mineola High School" />
+                </div>
+                <div class="form-field">
+                  <label for="p-grade">Grade</label>
+                  <select id="p-grade">
+                    <option value="">Select grade</option>
+                    <option value="9">9th Grade</option>
+                    <option value="10">10th Grade</option>
+                    <option value="11">11th Grade</option>
+                    <option value="12">12th Grade</option>
+                    <option value="college">College</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="p-town">Town / City</label>
+                  <input type="text" id="p-town" placeholder="e.g. Huntington" />
+                </div>
+                <div class="form-field">
+                  <label for="p-county">County</label>
+                  <select id="p-county">
+                    <option value="">Select county</option>
+                    <option value="Nassau">Nassau County</option>
+                    <option value="Suffolk">Suffolk County</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-field full">
+                  <label for="p-bio">About you <span style="font-weight:400;color:var(--ink-soft)">(optional)</span></label>
+                  <textarea id="p-bio" placeholder="Tell us a bit about yourself — your interests, goals, or why you want to intern..."></textarea>
+                </div>
+              </div>
+              <button type="submit" class="save-btn">Save Changes</button>
+              <div class="save-success" id="profile-success">✓ Profile saved!</div>
+            </form>
+          </div>
+
+          <!-- Preferences -->
+          <div class="account-panel" id="panel-preferences">
+            <div class="panel-heading">My Preferences</div>
+            <form id="pref-form">
+
+              <div class="pref-section">
+                <div class="pref-section__heading">
+                  Your Location
+                  <button type="button" class="info-btn" id="location-info-btn" aria-label="Why we need this">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M8 7v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      <circle cx="8" cy="4.5" r="0.8" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div class="info-popover" id="location-info-popover">
+                    <strong>Why we ask for your location</strong>
+                    <p>We use your town or ZIP code to surface the most accurate and personalized internship opportunities near you — so you see what's actually relevant to where you live.</p>
+                    <p>We never use your information for anything else or share it with any other person or organization.</p>
+                  </div>
+                </div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                  <div class="form-field" style="max-width:160px">
+                    <label for="pref-zip">ZIP code <span style="color:var(--coral)">*</span></label>
+                    <input type="text" id="pref-zip" placeholder="e.g. 11743" maxlength="10" autocomplete="postal-code" required />
+                  </div>
+                  <div class="form-field" style="max-width:220px">
+                    <label for="pref-town-input">Town <span style="color:var(--ink-soft);font-weight:400">(optional)</span></label>
+                    <input type="text" id="pref-town-input" placeholder="e.g. Huntington" autocomplete="off" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="pref-section">
+                <div class="pref-section__heading">Opportunity Type</div>
+                <div class="pref-pills" id="pref-type">
+                  <button type="button" class="pref-pill" data-value="Campaign">Campaign</button>
+                  <button type="button" class="pref-pill" data-value="Civic">Civic</button>
+                  <button type="button" class="pref-pill" data-value="Government">Government</button>
+                  <button type="button" class="pref-pill" data-value="Nonprofit">Nonprofit</button>
+                </div>
+              </div>
+
+              <div class="pref-section">
+                <div class="pref-section__heading">Format</div>
+                <div class="pref-pills" id="pref-format">
+                  <button type="button" class="pref-pill" data-value="In-Person">In-Person</button>
+                  <button type="button" class="pref-pill" data-value="Remote">Remote</button>
+                  <button type="button" class="pref-pill" data-value="Hybrid">Hybrid</button>
+                </div>
+              </div>
+
+              <div class="pref-section">
+                <div class="pref-section__heading">Party Affiliation</div>
+                <div class="pref-pills" id="pref-party">
+                  <button type="button" class="pref-pill" data-value="Democrat">Democrat</button>
+                  <button type="button" class="pref-pill" data-value="Republican">Republican</button>
+                  <button type="button" class="pref-pill" data-value="Nonpartisan">Nonpartisan</button>
+                </div>
+              </div>
+
+              <div class="pref-section">
+                <div class="pref-section__heading">County</div>
+                <div class="pref-pills" id="pref-county">
+                  <button type="button" class="pref-pill" data-value="Nassau">Nassau</button>
+                  <button type="button" class="pref-pill" data-value="Suffolk">Suffolk</button>
+                </div>
+              </div>
+
+              <button type="submit" class="save-btn">Save Preferences</button>
+              <div class="save-success" id="pref-success">✓ Preferences saved!</div>
+            </form>
+          </div>
+
+          <!-- Saved Listings -->
+          <div class="account-panel" id="panel-saved">
+            <div class="panel-heading">Saved Listings</div>
+            <div id="saved-list"></div>
+          </div>
+
+          <!-- Contacted -->
+          <div class="account-panel" id="panel-contacted">
+            <div class="panel-heading">Contacted</div>
+            <p style="font-size:0.88rem;color:var(--ink-soft);margin-bottom:20px">
+              Track which opportunities you've already reached out to.
+            </p>
+            <div id="contacted-list"></div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__logo">
+        <img src="brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2026 YourTurn2Intern · yourturn2intern.org</span>
+        <div class="footer__links-row">
+          <a href="opportunities.html" class="footer__link">Opportunities</a>
+          <a href="resources.html" class="footer__link">Resources</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Same opportunity data as other pages ──────────────────────
+    const ALL_OPPORTUNITIES = [
+      { id:1,  org:"Patricia Canzoneri-Fitzpatrick", title:"Patricia Canzoneri-Fitzpatrick for NY State Senate", location1:"Lynbrook, NY",        location2:"Nassau County",  type:"Campaign", role:"Intern", format:"In-Person", party:"Republican" },
+      { id:2,  org:"Jennifer DeSena",               title:"Jennifer DeSena for Town Supervisor",                location1:"Manhasset, NY",       location2:"Nassau County",  type:"Campaign", role:"Intern", format:"In-Person", party:"Republican" },
+      { id:3,  org:"Jarett Gandolfo",               title:"Jarett Gandolfo for NY State Senate",                location1:"Islip, NY",           location2:"Suffolk County", type:"Campaign", role:"Intern", format:"In-Person", party:"Republican" },
+      { id:4,  org:"Rebecca Kassay",                title:"Rebecca Kassay for NY State Assembly",               location1:"Stony Brook, NY",     location2:"Suffolk County", type:"Campaign", role:"Intern", format:"Hybrid",    party:"Democrat"   },
+      { id:5,  org:"Kim Keiserman",                 title:"Kim Keiserman for NY State Assembly",                location1:"North Hempstead, NY", location2:"Nassau County",  type:"Campaign", role:"Intern", format:"Hybrid",    party:"Democrat"   },
+      { id:6,  org:"Jack Martins",                  title:"Jack Martins for NY State Senate",                   location1:"Great Neck, NY",      location2:"Nassau County",  type:"Campaign", role:"Intern", format:"Hybrid",    party:"Republican" },
+      { id:7,  org:"Monica Martinez",               title:"Monica Martinez for NY State Senate",                location1:"Bay Shore, NY",       location2:"Suffolk County", type:"Campaign", role:"Intern", format:"In-Person", party:"Democrat"   },
+      { id:8,  org:"Steven Rhoads",                 title:"Steven Rhoads for NY State Senate",                  location1:"Syosset, NY",         location2:"Nassau County",  type:"Campaign", role:"Intern", format:"Hybrid",    party:"Republican" },
+      { id:9,  org:"Joe Scianablo",                 title:"Joe Scianablo for Town Supervisor",                  location1:"Hempstead, NY",       location2:"Nassau County",  type:"Campaign", role:"Intern", format:"In-Person", party:"Democrat"   },
+      { id:10, org:"Ray Tierney",                   title:"Ray Tierney for Suffolk County DA",                  location1:"Hauppauge, NY",       location2:"Suffolk County", type:"Campaign", role:"Intern", format:"Hybrid",    party:"Republican" },
+    ];
+
+    // ── Auth helpers ──────────────────────────────────────────────
+    function getUser()     { try { return JSON.parse(localStorage.getItem('yt2i_user')); } catch { return null; } }
+    function getAccounts() { try { return JSON.parse(localStorage.getItem('yt2i_accounts') || '{}'); } catch { return {}; } }
+    function saveAccounts(a) { localStorage.setItem('yt2i_accounts', JSON.stringify(a)); }
+
+    function getAccountData() {
+      const user = getUser();
+      if (!user) return null;
+      const accounts = getAccounts();
+      return accounts[user.email] || null;
+    }
+    function updateAccountData(patch) {
+      const user = getUser();
+      if (!user) return;
+      const accounts = getAccounts();
+      accounts[user.email] = Object.assign({}, accounts[user.email] || {}, patch);
+      saveAccounts(accounts);
+    }
+
+    // ── Demo mode ─────────────────────────────────────────────────
+    document.getElementById('demo-btn').addEventListener('click', () => {
+      const demoEmail = 'demo@yourturn2intern.org';
+      const demoAccounts = {
+        [demoEmail]: {
+          name: 'Alex Rivera',
+          password: 'demo',
+          school: 'Mineola High School',
+          grade: '11',
+          town: 'Mineola',
+          county: 'Nassau',
+          bio: 'Junior at Mineola HS interested in politics and public service. Looking for campaign internships this summer.',
+          savedListings: [1, 4, 6],
+          contactedListings: [4],
+          preferences: {
+            type: ['Campaign'],
+            format: ['Hybrid', 'In-Person'],
+            party: ['Democrat'],
+            county: ['Nassau']
+          }
+        }
+      };
+      localStorage.setItem('yt2i_accounts', JSON.stringify(demoAccounts));
+      localStorage.setItem('yt2i_user', JSON.stringify({ email: demoEmail, name: 'Alex Rivera' }));
+      window.location.reload();
+    });
+
+    // ── Init ──────────────────────────────────────────────────────
+    const user = getUser();
+
+    if (!user) {
+      document.getElementById('auth-wall').style.display = 'block';
+    } else {
+      document.getElementById('account-content').style.display = 'block';
+      document.getElementById('welcome-heading').textContent = 'Hi, ' + user.name.split(' ')[0] + ' 👋';
+      loadProfile();
+      loadPreferences();
+      renderSaved();
+      renderContacted();
+    }
+
+    // ── Sign out ──────────────────────────────────────────────────
+    document.getElementById('nav-signout').addEventListener('click', () => {
+      localStorage.removeItem('yt2i_user');
+      window.location.href = 'opportunities.html';
+    });
+
+    // ── Sidebar navigation ────────────────────────────────────────
+    document.querySelectorAll('.account-nav__item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.account-nav__item').forEach(i => i.classList.remove('active'));
+        document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('active'));
+        item.classList.add('active');
+        document.getElementById('panel-' + item.dataset.panel).classList.add('active');
+      });
+    });
+
+    // ── Profile ───────────────────────────────────────────────────
+    function loadProfile() {
+      const data = getAccountData();
+      if (!data) return;
+      document.getElementById('p-name').value   = data.name    || user.name || '';
+      document.getElementById('p-email').value  = user.email;
+      document.getElementById('p-school').value = data.school  || '';
+      document.getElementById('p-grade').value  = data.grade   || '';
+      document.getElementById('p-town').value   = data.town    || '';
+      document.getElementById('p-county').value = data.county  || '';
+      document.getElementById('p-bio').value    = data.bio     || '';
+    }
+
+    document.getElementById('profile-form').addEventListener('submit', e => {
+      e.preventDefault();
+      updateAccountData({
+        name:   document.getElementById('p-name').value.trim(),
+        school: document.getElementById('p-school').value.trim(),
+        grade:  document.getElementById('p-grade').value,
+        town:   document.getElementById('p-town').value.trim(),
+        county: document.getElementById('p-county').value,
+        bio:    document.getElementById('p-bio').value.trim(),
+      });
+      // Update display name
+      const stored = JSON.parse(localStorage.getItem('yt2i_user'));
+      stored.name = document.getElementById('p-name').value.trim();
+      localStorage.setItem('yt2i_user', JSON.stringify(stored));
+      const suc = document.getElementById('profile-success');
+      suc.classList.add('visible');
+      setTimeout(() => suc.classList.remove('visible'), 3000);
+    });
+
+    // ── Preferences ───────────────────────────────────────────────
+    function loadPreferences() {
+      const data = getAccountData();
+      const prefs = data?.preferences || {};
+      Object.entries(prefs).forEach(([group, vals]) => {
+        const container = document.getElementById('pref-' + group);
+        if (!container) return;
+        container.querySelectorAll('.pref-pill').forEach(pill => {
+          if (vals.includes(pill.dataset.value)) pill.classList.add('active');
+        });
+      });
+      document.getElementById('pref-zip').value        = data?.preferences?.zip  || '';
+      document.getElementById('pref-town-input').value = data?.preferences?.town || '';
+    }
+
+    // Info popover
+    const infoBtn = document.getElementById('location-info-btn');
+    const infoPopover = document.getElementById('location-info-popover');
+    if (infoBtn) {
+      infoBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        infoPopover.classList.toggle('open');
+      });
+      document.addEventListener('click', () => infoPopover.classList.remove('open'));
+    }
+
+    document.querySelectorAll('.pref-pill').forEach(pill => {
+      pill.addEventListener('click', () => pill.classList.toggle('active'));
+    });
+
+    document.getElementById('pref-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const preferences = {};
+      ['type', 'format', 'party', 'county'].forEach(group => {
+        const container = document.getElementById('pref-' + group);
+        preferences[group] = [...container.querySelectorAll('.pref-pill.active')].map(p => p.dataset.value);
+      });
+      preferences.zip  = document.getElementById('pref-zip').value.trim();
+      preferences.town = document.getElementById('pref-town-input').value.trim();
+      updateAccountData({ preferences });
+      const suc = document.getElementById('pref-success');
+      suc.classList.add('visible');
+      setTimeout(() => suc.classList.remove('visible'), 3000);
+    });
+
+    // ── Saved Listings ────────────────────────────────────────────
+    function renderSaved() {
+      const data = getAccountData();
+      const savedIds = data?.savedListings || [];
+      const badge = document.getElementById('saved-badge');
+      badge.textContent = savedIds.length;
+      badge.classList.toggle('visible', savedIds.length > 0);
+
+      const container = document.getElementById('saved-list');
+      const items = ALL_OPPORTUNITIES.filter(o => savedIds.includes(o.id));
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="empty-panel">
+            <div class="empty-panel__icon">🔖</div>
+            <div class="empty-panel__heading">No saved listings yet</div>
+            <p>Browse <a href="opportunities.html">opportunities</a> and click the bookmark icon to save them here.</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      const list = document.createElement('div');
+      list.className = 'listing-list';
+      items.forEach(o => {
+        const isContacted = (data?.contactedListings || []).includes(o.id);
+        list.insertAdjacentHTML('beforeend', buildListingItem(o, isContacted, 'saved'));
+      });
+      container.appendChild(list);
+      attachListingActions(container);
+    }
+
+    // ── Contacted ─────────────────────────────────────────────────
+    function renderContacted() {
+      const data = getAccountData();
+      const contactedIds = data?.contactedListings || [];
+      const badge = document.getElementById('contacted-badge');
+      badge.textContent = contactedIds.length;
+      badge.classList.toggle('visible', contactedIds.length > 0);
+
+      const container = document.getElementById('contacted-list');
+      const items = ALL_OPPORTUNITIES.filter(o => contactedIds.includes(o.id));
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="empty-panel">
+            <div class="empty-panel__icon">✉️</div>
+            <div class="empty-panel__heading">No contacted listings yet</div>
+            <p>When you reach out to an opportunity, mark it here to track your progress.</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      const list = document.createElement('div');
+      list.className = 'listing-list';
+      items.forEach(o => {
+        list.insertAdjacentHTML('beforeend', buildListingItem(o, true, 'contacted'));
+      });
+      container.appendChild(list);
+      attachListingActions(container);
+    }
+
+    function buildListingItem(o, isContacted, context) {
+      const partyColor = { Democrat:'blue', Republican:'coral' };
+      return `
+        <div class="listing-item" data-id="${o.id}">
+          <div class="listing-item__info">
+            <div class="listing-item__org">${o.org}</div>
+            <div class="listing-item__title">${o.title}</div>
+            <div class="listing-item__meta">
+              <span class="tag tag--blue">${o.location1}</span>
+              <span class="tag tag--blue">${o.location2}</span>
+              <span class="tag tag--${partyColor[o.party] || 'grey'}">${o.party}</span>
+              <span class="tag tag--green">${o.format}</span>
+              ${isContacted ? '<span class="tag tag--green">✓ Contacted</span>' : ''}
+            </div>
+          </div>
+          <div class="listing-item__actions">
+            <a href="listing.html?id=${o.id}" class="action-btn action-btn--view">View →</a>
+            ${!isContacted
+              ? `<button class="action-btn js-mark-contacted" data-id="${o.id}">Mark Contacted</button>`
+              : `<button class="action-btn js-unmark-contacted" data-id="${o.id}" style="color:var(--ink-soft)">Unmark</button>`
+            }
+            ${context === 'saved'
+              ? `<button class="action-btn action-btn--remove js-remove-saved" data-id="${o.id}">Remove</button>`
+              : ''
+            }
+          </div>
+        </div>`;
+    }
+
+    function attachListingActions(container) {
+      container.querySelectorAll('.js-mark-contacted').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const data = getAccountData();
+          const contacted = data?.contactedListings || [];
+          if (!contacted.includes(id)) contacted.push(id);
+          updateAccountData({ contactedListings: contacted });
+          renderSaved();
+          renderContacted();
+        });
+      });
+      container.querySelectorAll('.js-unmark-contacted').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const data = getAccountData();
+          const contacted = (data?.contactedListings || []).filter(x => x !== id);
+          updateAccountData({ contactedListings: contacted });
+          renderSaved();
+          renderContacted();
+        });
+      });
+      container.querySelectorAll('.js-remove-saved').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const data = getAccountData();
+          const saved = (data?.savedListings || []).filter(x => x !== id);
+          updateAccountData({ savedListings: saved });
+          renderSaved();
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
