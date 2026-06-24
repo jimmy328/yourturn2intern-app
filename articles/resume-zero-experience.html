@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Write a Résumé with Zero Work Experience — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:       #1D72D4;
+      --blue-dark:  #155DB0;
+      --blue-light: #D6E8FA;
+      --coral:      #E8625C;
+      --coral-dark: #C94F49;
+      --coral-light:#FCDBD9;
+      --ink:        #111827;
+      --ink-mid:    #374151;
+      --ink-soft:   #6B7280;
+      --surface:    #FFFFFF;
+      --off:        #F5F6F8;
+      --border:     #E2E7EE;
+      --navy:       #1a2744;
+      --navy-light: #243059;
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: #FFFFFF;
+      background-image: url('../backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(760px, 100%); margin-inline: auto; padding-inline: 24px; }
+
+    /* Nav (matches resources.html) */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__link--active { color: var(--blue); font-weight: 700; }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+    }
+    .nav__cta:hover { background: var(--coral-dark); }
+    @media (max-width: 840px) { .nav__links { display: none; } }
+
+    /* Article header */
+    .article-header { padding-block: 48px 28px; border-bottom: 1px solid var(--border); }
+    .article-header__back {
+      display: inline-block; font-size: 0.85rem; font-weight: 600;
+      color: var(--blue); margin-bottom: 18px;
+    }
+    .article-header__cat {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .article-header__title {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900; line-height: 1.2; color: var(--ink); margin-bottom: 14px;
+    }
+    .article-header__byline { font-size: 0.9rem; color: var(--ink-soft); }
+
+    /* Article body */
+    .article-body { padding-block: 40px 64px; }
+    .article-body p { font-size: 1.05rem; color: var(--ink-mid); margin-bottom: 22px; }
+    .article-body h2 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;
+      color: var(--ink); margin: 36px 0 16px;
+    }
+    .article-body h3 {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+      color: var(--ink); margin: 28px 0 12px;
+    }
+    .article-body ul, .article-body ol { margin: 0 0 22px 1.2em; color: var(--ink-mid); }
+    .article-body li { margin-bottom: 8px; font-size: 1.02rem; }
+    .article-body strong { color: var(--ink); }
+    .article-body blockquote {
+      border-left: 3px solid var(--blue); padding-left: 18px;
+      color: var(--ink-mid); font-style: italic; margin: 24px 0;
+    }
+
+    /* Footer */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.65); padding-block: 40px; font-size: 0.85rem; }
+    .footer__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer__brand { font-family: var(--font-display); font-weight: 800; color: #fff; font-size: 1rem; }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="../landing.html" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="../brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="../listing.html" class="nav__link">Opportunities</a>
+        <a href="../resources.html" class="nav__link nav__link--active">Resources</a>
+        <a href="#" class="nav__cta">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-header">
+    <div class="container">
+      <a href="../resources.html" class="article-header__back">&larr; Back to Resources</a>
+      <div class="article-header__cat">Résumés</div>
+      <h1 class="article-header__title">How to Write a Résumé with Zero Work Experience</h1>
+      <div class="article-header__byline">By YourTurn2Intern Staff</div>
+    </div>
+  </div>
+
+  <article class="article-body">
+    <div class="container">
+
+      <p>"I don't have anything to put on a résumé" is one of the most common things we hear from students applying for their first civic internship. Here's the good news: you have more to work with than you think. You've just never had to translate it into résumé language before.</p>
+
+      <h2>Start With What You Actually Have</h2>
+
+      <p>If you've never had a job, that's fine. Your résumé doesn't need a "Work Experience" section to be strong. Instead, build it around coursework, volunteer work, school clubs, and any informal work you've already done, even if it wasn't a "real job" on paper.</p>
+
+      <ul>
+        <li><strong>Coursework:</strong> A government or AP Government class, a debate elective, or a research-heavy class can show you already have some foundation relevant to civic work.</li>
+        <li><strong>Volunteer work:</strong> Food drives, beach cleanups, tutoring younger students, religious or community organizations. All of it counts.</li>
+        <li><strong>School clubs:</strong> Student government, Model UN, a newspaper or yearbook staff, a debate team. These show leadership and follow-through.</li>
+        <li><strong>Informal work:</strong> Babysitting, dog walking, retail shifts, lifeguarding, tutoring. These are real jobs, even if no one called them that.</li>
+      </ul>
+
+      <h2>Reframe "Informal" Work as Real Skills</h2>
+
+      <p>The trick is describing what you did in terms of the skill, not the task. "Watched kids" turns into managing a schedule, staying calm in an emergency, and being responsible for someone else's safety. "Worked the register" becomes customer service and handling cash accurately under pressure. Even "helped with homework" is really explaining concepts clearly and adjusting to how someone else learns.</p>
+
+      <p>Government and nonprofit offices care about exactly these skills: communication, reliability, and the ability to deal with people calmly. You already have practice with all three.</p>
+
+      <h2>Formatting Tips</h2>
+
+      <ul>
+        <li>Keep it to one page. No exception, even if you feel like you have "more to say."</li>
+        <li>Use a simple, clean font. Nothing decorative or hard to read quickly.</li>
+        <li>List your most relevant or impressive items first within each section, not necessarily in strict date order.</li>
+        <li>Use short bullet points starting with action verbs (organized, coordinated, assisted, researched) instead of full sentences.</li>
+        <li>Include your school, expected graduation year, and a phone number and email you actually check.</li>
+      </ul>
+
+      <h2>What to Leave Off</h2>
+
+      <p>Skip an "Objective" paragraph. It almost always states the obvious and wastes space. Leave off your GPA unless it's genuinely strong and the application asks for it. And don't list skills you can't back up; if you write "proficient in Excel," be ready to talk about what you've actually used it for.</p>
+
+      <p>Most of all, don't let a blank "Experience" section stop you from applying. The offices and campaigns posting these internships expect first-timers. What they're really looking for is someone dependable who shows up ready to learn, and that's something you can put into words.</p>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">YourTurn2Intern</div>
+      <div class="footer__links">
+        <a href="../listing.html" class="footer__link">Opportunities</a>
+        <a href="../resources.html" class="footer__link">Resources</a>
+        <a href="#" class="footer__link">Contact</a>
+      </div>
+      <div>© 2025 YourTurn2Intern. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

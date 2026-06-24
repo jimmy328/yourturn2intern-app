@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is a Civic Internship, and Why Does It Matter? — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:       #1D72D4;
+      --blue-dark:  #155DB0;
+      --blue-light: #D6E8FA;
+      --coral:      #E8625C;
+      --coral-dark: #C94F49;
+      --coral-light:#FCDBD9;
+      --ink:        #111827;
+      --ink-mid:    #374151;
+      --ink-soft:   #6B7280;
+      --surface:    #FFFFFF;
+      --off:        #F5F6F8;
+      --border:     #E2E7EE;
+      --navy:       #1a2744;
+      --navy-light: #243059;
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: #FFFFFF;
+      background-image: url('../backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(760px, 100%); margin-inline: auto; padding-inline: 24px; }
+
+    /* Nav (matches resources.html) */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__link--active { color: var(--blue); font-weight: 700; }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+    }
+    .nav__cta:hover { background: var(--coral-dark); }
+    @media (max-width: 840px) { .nav__links { display: none; } }
+
+    /* Article header */
+    .article-header { padding-block: 48px 28px; border-bottom: 1px solid var(--border); }
+    .article-header__back {
+      display: inline-block; font-size: 0.85rem; font-weight: 600;
+      color: var(--blue); margin-bottom: 18px;
+    }
+    .article-header__cat {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .article-header__title {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900; line-height: 1.2; color: var(--ink); margin-bottom: 14px;
+    }
+    .article-header__byline { font-size: 0.9rem; color: var(--ink-soft); }
+
+    /* Article body */
+    .article-body { padding-block: 40px 64px; }
+    .article-body p { font-size: 1.05rem; color: var(--ink-mid); margin-bottom: 22px; }
+    .article-body h2 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;
+      color: var(--ink); margin: 36px 0 16px;
+    }
+    .article-body h3 {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+      color: var(--ink); margin: 28px 0 12px;
+    }
+    .article-body ul, .article-body ol { margin: 0 0 22px 1.2em; color: var(--ink-mid); }
+    .article-body li { margin-bottom: 8px; font-size: 1.02rem; }
+    .article-body strong { color: var(--ink); }
+    .article-body blockquote {
+      border-left: 3px solid var(--blue); padding-left: 18px;
+      color: var(--ink-mid); font-style: italic; margin: 24px 0;
+    }
+
+    /* Footer */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.65); padding-block: 40px; font-size: 0.85rem; }
+    .footer__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer__brand { font-family: var(--font-display); font-weight: 800; color: #fff; font-size: 1rem; }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="../landing.html" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="../brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="../listing.html" class="nav__link">Opportunities</a>
+        <a href="../resources.html" class="nav__link nav__link--active">Resources</a>
+        <a href="#" class="nav__cta">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-header">
+    <div class="container">
+      <a href="../resources.html" class="article-header__back">&larr; Back to Resources</a>
+      <div class="article-header__cat">Civic Engagement</div>
+      <h1 class="article-header__title">What Is a Civic Internship, and Why Does It Matter?</h1>
+      <div class="article-header__byline">By Jeremy Fang</div>
+    </div>
+  </div>
+
+  <article class="article-body">
+    <div class="container">
+
+      <p>If you've never heard the term "civic internship" before, you're not alone. It's not something most high schools or colleges spend a lot of time explaining, even though these internships might be some of the most useful, real-world experience a student can get. So let's start with the basics.</p>
+
+      <p>A civic internship is any internship that puts you to work inside the systems that run your community. That usually means one of three kinds of places: a government office, a political campaign, or a nonprofit or advocacy organization. Unlike a retail job or a typical corporate internship, the work you do is directly connected to how decisions get made and how services get delivered to real people: your neighbors, your classmates, your own family.</p>
+
+      <h2>The Three Main Types of Civic Internships</h2>
+
+      <p>Government internships place you inside a town hall, a county legislator's office, a school board, or a state representative's district office. You might help answer constituent phone calls, research a policy question, sit in on public meetings, or help organize community events. The pace is usually steady and the dress code is more formal, and you get a front-row seat to how local government actually functions day to day, which is often very different from how it gets portrayed in the news.</p>
+
+      <p>Campaign internships are a different animal entirely. You're working for a candidate or a ballot initiative, and the goal is winning votes by a specific date. A typical day might involve knocking on doors, making phone calls to voters, entering data from canvassing sheets, or helping set up a rally or town hall. The hours can be unpredictable, especially as Election Day gets closer, but the energy is high. There's no time to sit around, so you learn fast.</p>
+
+      <p>Nonprofit and advocacy internships tend to focus on a specific cause, whether that's voter turnout, housing, the environment, food security, or youth programs, and the day-to-day work blends research, outreach, and event support. You might help write a grant application, organize a volunteer day, build a flyer for a community event, or track sign-ups for a program. Nonprofits often give interns more responsibility early on simply because the staff is small and everyone pitches in.</p>
+
+      <h2>Why These Roles Matter, For You and For Your Community</h2>
+
+      <p>For students, civic internships are a low-risk way to figure out what kind of work actually interests you before you commit to a major or a career path. Maybe you discover you love public speaking after running a voter registration table. Maybe you realize policy research bores you but organizing events doesn't. Either way, you learn something about yourself that a classroom can't teach.</p>
+
+      <p>For communities, these roles matter because local government offices, campaigns, and nonprofits are almost always short-staffed and under-resourced. An intern who shows up on time, asks good questions, and follows through on tasks can genuinely move the needle. Phones get answered that would otherwise sit ringing, doors get knocked that would otherwise stay unknocked, paperwork gets processed instead of piling up. Civic work runs on people power, and interns are a real part of that.</p>
+
+      <h2>What Skills You Actually Walk Away With</h2>
+
+      <p>It's easy to assume an unpaid or low-paid internship doesn't count as real experience. It does. The skills tend to transfer well beyond civic work.</p>
+
+      <ul>
+        <li><strong>Communication:</strong> Talking to constituents, voters, or community members teaches you how to explain things clearly and listen well, even when someone is frustrated or in a hurry.</li>
+        <li><strong>Research:</strong> Looking into a policy issue, a grant requirement, or a local ordinance builds the kind of research muscle that pays off in college coursework and beyond.</li>
+        <li><strong>Organizing:</strong> Whether it's a canvassing route, a volunteer schedule, or an event timeline, civic work is full of logistics, and you get good at managing a lot of moving pieces.</li>
+        <li><strong>Constituent and customer service:</strong> Helping someone through a confusing process, calmly and patiently, is a skill that employers in every field value.</li>
+      </ul>
+
+      <h2>How This Is Different From a Typical Corporate Internship</h2>
+
+      <p>A lot of corporate internships are built around shadowing: you sit in meetings, maybe build a slide deck, and present something at the end of the summer. Civic internships tend to be more hands-on right away, because the offices running them usually don't have the staff or budget for a polished "intern program." That can feel intimidating at first, but it also means you get real responsibility faster than you might in a bigger, more bureaucratic internship.</p>
+
+      <p>There's also a different sense of purpose. A corporate internship is generally about helping a company sell more of something. A civic internship is about helping a community function, helping a candidate make their case to voters, or helping a cause gain ground. For a lot of students, that distinction makes the work feel more meaningful, even when the tasks themselves sound the same on paper: filing, calling, data entry.</p>
+
+      <h2>Why Long Island Is a Great Place to Start</h2>
+
+      <p>Long Island happens to be an unusually good place to find civic internships. Between Nassau and Suffolk counties, there are dozens of towns, villages, and school districts, each with its own government offices and staff. Add in active congressional, state, and county-level political races nearly every cycle, plus a dense network of local nonprofits working on everything from coastal conservation to housing to youth mentorship, and you end up with far more opportunities than most students realize exist.</p>
+
+      <p>Town, county, state, and federal offices all operate in the same towns here, alongside campaigns and nonprofits working those same streets. Because of that layering, students often have an easier time finding something close to home, sometimes within walking or short driving distance, than students in less densely governed parts of the country.</p>
+
+      <h2>Ready to Look Around?</h2>
+
+      <p>You don't need a polished résumé or years of experience to get started. You need curiosity, reliability, and a willingness to learn on the job. Everything else can be picked up along the way. If this sounds like something you'd want to try, head over to the <a href="../listing.html" style="color: var(--blue); font-weight: 600;">Opportunities page</a> and see what's currently open near you. There's a good chance something is closer, and more within reach, than you'd expect.</p>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">YourTurn2Intern</div>
+      <div class="footer__links">
+        <a href="../listing.html" class="footer__link">Opportunities</a>
+        <a href="../resources.html" class="footer__link">Resources</a>
+        <a href="#" class="footer__link">Contact</a>
+      </div>
+      <div>© 2025 YourTurn2Intern. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

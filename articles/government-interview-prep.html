@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Prepare for a Government Office Interview — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:       #1D72D4;
+      --blue-dark:  #155DB0;
+      --blue-light: #D6E8FA;
+      --coral:      #E8625C;
+      --coral-dark: #C94F49;
+      --coral-light:#FCDBD9;
+      --ink:        #111827;
+      --ink-mid:    #374151;
+      --ink-soft:   #6B7280;
+      --surface:    #FFFFFF;
+      --off:        #F5F6F8;
+      --border:     #E2E7EE;
+      --navy:       #1a2744;
+      --navy-light: #243059;
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: #FFFFFF;
+      background-image: url('../backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(760px, 100%); margin-inline: auto; padding-inline: 24px; }
+
+    /* Nav (matches resources.html) */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__link--active { color: var(--blue); font-weight: 700; }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+    }
+    .nav__cta:hover { background: var(--coral-dark); }
+    @media (max-width: 840px) { .nav__links { display: none; } }
+
+    /* Article header */
+    .article-header { padding-block: 48px 28px; border-bottom: 1px solid var(--border); }
+    .article-header__back {
+      display: inline-block; font-size: 0.85rem; font-weight: 600;
+      color: var(--blue); margin-bottom: 18px;
+    }
+    .article-header__cat {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .article-header__title {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900; line-height: 1.2; color: var(--ink); margin-bottom: 14px;
+    }
+    .article-header__byline { font-size: 0.9rem; color: var(--ink-soft); }
+
+    /* Article body */
+    .article-body { padding-block: 40px 64px; }
+    .article-body p { font-size: 1.05rem; color: var(--ink-mid); margin-bottom: 22px; }
+    .article-body h2 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;
+      color: var(--ink); margin: 36px 0 16px;
+    }
+    .article-body h3 {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+      color: var(--ink); margin: 28px 0 12px;
+    }
+    .article-body ul, .article-body ol { margin: 0 0 22px 1.2em; color: var(--ink-mid); }
+    .article-body li { margin-bottom: 8px; font-size: 1.02rem; }
+    .article-body strong { color: var(--ink); }
+    .article-body blockquote {
+      border-left: 3px solid var(--blue); padding-left: 18px;
+      color: var(--ink-mid); font-style: italic; margin: 24px 0;
+    }
+
+    /* Footer */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.65); padding-block: 40px; font-size: 0.85rem; }
+    .footer__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer__brand { font-family: var(--font-display); font-weight: 800; color: #fff; font-size: 1rem; }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="../landing.html" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="../brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="../listing.html" class="nav__link">Opportunities</a>
+        <a href="../resources.html" class="nav__link nav__link--active">Resources</a>
+        <a href="#" class="nav__cta">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-header">
+    <div class="container">
+      <a href="../resources.html" class="article-header__back">&larr; Back to Resources</a>
+      <div class="article-header__cat">Interviews</div>
+      <h1 class="article-header__title">How to Prepare for a Government Office Interview</h1>
+      <div class="article-header__byline">By YourTurn2Intern Staff</div>
+    </div>
+  </div>
+
+  <article class="article-body">
+    <div class="container">
+
+      <p>Government office interviews tend to feel more formal than other internship interviews, which can make them more intimidating. The preparation, though, is pretty straightforward once you know what to expect.</p>
+
+      <h2>Research the Office First</h2>
+
+      <p>Before your interview, spend twenty or thirty minutes looking at the office's website. Know what level of government you're dealing with (town, county, state, or federal), what the office actually handles, and who the elected official or department head is. If they've been in the news recently for a specific initiative or local issue, it's worth knowing the basics. You don't need to be an expert. You just need to show you bothered to look.</p>
+
+      <h2>Dress a Notch More Formal Than You Think You Need To</h2>
+
+      <p>Government offices tend to skew more traditional than campaigns or nonprofits. Business casual is a safe default: a collared shirt or blouse, neat pants or a skirt, closed-toe shoes. When in doubt, dress slightly more formal than you expect. It's much easier to recover from being overdressed than underdressed.</p>
+
+      <h2>Expect These Kinds of Questions</h2>
+
+      <ul>
+        <li>"Why are you interested in this office or this kind of work?"</li>
+        <li>"How would you handle a constituent who's upset or frustrated?"</li>
+        <li>"Tell me about a time you had to be organized or manage multiple tasks at once."</li>
+        <li>"What's your availability, and how many hours can you commit each week?"</li>
+        <li>"Do you have any experience with [specific software, research, or writing tasks]?"</li>
+      </ul>
+
+      <p>You don't need a perfectly polished answer for every question. Interviewers in government offices are generally looking for someone reliable, calm under pressure, and willing to learn, not someone with a flawless résumé.</p>
+
+      <h2>Questions You Should Ask</h2>
+
+      <p>Bring at least two or three questions of your own. It shows genuine interest and helps you understand what you're signing up for. Good options include:</p>
+
+      <ul>
+        <li>"What would a typical week look like for an intern in this office?"</li>
+        <li>"Is there a specific project or area I'd be helping with most?"</li>
+        <li>"Who would I be working with day to day?"</li>
+      </ul>
+
+      <h2>Follow Up Afterward</h2>
+
+      <p>Send a short thank-you email within a day or two. Mention something specific from the conversation so it doesn't feel generic, like a project they described, or something you discussed about the office's work. Keep it brief: three or four sentences is plenty. It's a small gesture, but it leaves a strong final impression and shows the kind of follow-through government offices value.</p>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">YourTurn2Intern</div>
+      <div class="footer__links">
+        <a href="../listing.html" class="footer__link">Opportunities</a>
+        <a href="../resources.html" class="footer__link">Resources</a>
+        <a href="#" class="footer__link">Contact</a>
+      </div>
+      <div>© 2025 YourTurn2Intern. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Know Your Rights as a Student Intern in New York — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:       #1D72D4;
+      --blue-dark:  #155DB0;
+      --blue-light: #D6E8FA;
+      --coral:      #E8625C;
+      --coral-dark: #C94F49;
+      --coral-light:#FCDBD9;
+      --ink:        #111827;
+      --ink-mid:    #374151;
+      --ink-soft:   #6B7280;
+      --surface:    #FFFFFF;
+      --off:        #F5F6F8;
+      --border:     #E2E7EE;
+      --navy:       #1a2744;
+      --navy-light: #243059;
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: #FFFFFF;
+      background-image: url('../backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(760px, 100%); margin-inline: auto; padding-inline: 24px; }
+
+    /* Nav (matches resources.html) */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__link--active { color: var(--blue); font-weight: 700; }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+    }
+    .nav__cta:hover { background: var(--coral-dark); }
+    @media (max-width: 840px) { .nav__links { display: none; } }
+
+    /* Article header */
+    .article-header { padding-block: 48px 28px; border-bottom: 1px solid var(--border); }
+    .article-header__back {
+      display: inline-block; font-size: 0.85rem; font-weight: 600;
+      color: var(--blue); margin-bottom: 18px;
+    }
+    .article-header__cat {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .article-header__title {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900; line-height: 1.2; color: var(--ink); margin-bottom: 14px;
+    }
+    .article-header__byline { font-size: 0.9rem; color: var(--ink-soft); }
+
+    /* Article body */
+    .article-body { padding-block: 40px 64px; }
+    .article-body p { font-size: 1.05rem; color: var(--ink-mid); margin-bottom: 22px; }
+    .article-body h2 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;
+      color: var(--ink); margin: 36px 0 16px;
+    }
+    .article-body h3 {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+      color: var(--ink); margin: 28px 0 12px;
+    }
+    .article-body ul, .article-body ol { margin: 0 0 22px 1.2em; color: var(--ink-mid); }
+    .article-body li { margin-bottom: 8px; font-size: 1.02rem; }
+    .article-body strong { color: var(--ink); }
+    .article-body blockquote {
+      border-left: 3px solid var(--blue); padding-left: 18px;
+      color: var(--ink-mid); font-style: italic; margin: 24px 0;
+    }
+
+    /* Footer */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.65); padding-block: 40px; font-size: 0.85rem; }
+    .footer__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer__brand { font-family: var(--font-display); font-weight: 800; color: #fff; font-size: 1rem; }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="../landing.html" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="../brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="../listing.html" class="nav__link">Opportunities</a>
+        <a href="../resources.html" class="nav__link nav__link--active">Resources</a>
+        <a href="#" class="nav__cta">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-header">
+    <div class="container">
+      <a href="../resources.html" class="article-header__back">&larr; Back to Resources</a>
+      <div class="article-header__cat">Student Rights</div>
+      <h1 class="article-header__title">Know Your Rights as a Student Intern in New York</h1>
+      <div class="article-header__byline">By Jeremy Fang</div>
+    </div>
+  </div>
+
+  <article class="article-body">
+    <div class="container">
+
+      <p>Starting your first internship is exciting, but it's normal to have questions you feel awkward asking out loud. Will I get paid? What if something feels off at my workplace? Who do I even call if I have a problem? You're allowed to ask these questions, and you deserve real answers before you say yes to any position.</p>
+
+      <p>This article gives you a general overview to help you ask better questions. It is not legal advice, and the specifics of labor law can change. If you want details on pay requirements, hours, or anything else affecting your specific situation, talk to your school's career center or contact a legal aid organization in your area. They can walk through your exact circumstances with you.</p>
+
+      <h2>Paid vs. unpaid: ask before you accept</h2>
+      <p>Internships in New York can be paid or unpaid, and the difference usually comes down to factors like who primarily benefits from the work and how the program is structured. Rules in this area exist to protect students from being used as free labor disguised as "experience." Before accepting any internship, it's completely reasonable to ask directly: "Is this position paid? If not, can you tell me more about how the program is structured?" A legitimate organization will answer clearly, without making you feel rude for asking.</p>
+
+      <h2>You have the right to a safe workplace</h2>
+      <p>No matter your age or how informal the internship feels, you have a right to a workplace free from harassment and unsafe conditions. This applies in a government office, on a campaign, or at a nonprofit. If a supervisor or coworker makes you uncomfortable or asks you to do something that doesn't sit right, that is worth taking seriously. Your gut feeling matters.</p>
+
+      <h2>Questions you're always allowed to ask</h2>
+      <ul>
+        <li>Is this role paid, and if so, how and when?</li>
+        <li>What hours will I be expected to work, and is there flexibility around school?</li>
+        <li>Who is my direct supervisor, and who can I go to if I have a concern?</li>
+        <li>Is there an orientation or training before I start?</li>
+      </ul>
+      <p>Asking these questions before you accept a role is not pushy. It's responsible. Organizations that work with student interns regularly should expect and welcome these questions.</p>
+
+      <h2>If something feels wrong</h2>
+      <p>If you ever feel unsafe, harassed, or unfairly treated during an internship, you don't have to handle it alone. Start with someone you trust: a parent, a teacher, or your school's career or guidance office. Many schools have staff responsible for internship and work-based learning programs who can help you figure out next steps. Local legal aid organizations also offer free or low-cost guidance for students and young workers, and can explain your specific rights based on your situation.</p>
+
+      <blockquote>You are allowed to ask questions, set boundaries, and ask for help. Wanting clarity about a job is never something to apologize for.</blockquote>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">YourTurn2Intern</div>
+      <div class="footer__links">
+        <a href="../listing.html" class="footer__link">Opportunities</a>
+        <a href="../resources.html" class="footer__link">Resources</a>
+        <a href="#" class="footer__link">Contact</a>
+      </div>
+      <div>© 2025 YourTurn2Intern. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

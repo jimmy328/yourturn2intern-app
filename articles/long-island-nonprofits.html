@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 Long Island Nonprofits That Are Shaping Civic Life — YourTurn2Intern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:       #1D72D4;
+      --blue-dark:  #155DB0;
+      --blue-light: #D6E8FA;
+      --coral:      #E8625C;
+      --coral-dark: #C94F49;
+      --coral-light:#FCDBD9;
+      --ink:        #111827;
+      --ink-mid:    #374151;
+      --ink-soft:   #6B7280;
+      --surface:    #FFFFFF;
+      --off:        #F5F6F8;
+      --border:     #E2E7EE;
+      --navy:       #1a2744;
+      --navy-light: #243059;
+      --shadow-card:  0 2px 12px rgba(26,37,64,0.07), 0 1px 3px rgba(26,37,64,0.05);
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 22px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: #FFFFFF;
+      background-image: url('../backgrounds/mix-b.svg');
+      background-size: 160px 120px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(760px, 100%); margin-inline: auto; padding-inline: 24px; }
+
+    /* Nav (matches resources.html) */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 80px;
+    }
+    .nav__logo { flex-shrink: 0; line-height: 0; }
+    .nav__logo img { height: 64px; width: auto; max-width: none; margin-left: -18px; }
+    .nav__links { display: flex; align-items: center; gap: 6px; }
+    .nav__link {
+      font-size: 0.9rem; font-weight: 500; color: var(--ink-mid);
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav__link:hover { color: var(--blue); background: var(--blue-light); }
+    .nav__link--active { color: var(--blue); font-weight: 700; }
+    .nav__cta {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+      background: var(--coral); padding: 9px 20px;
+      border-radius: var(--radius-sm); margin-left: 8px;
+    }
+    .nav__cta:hover { background: var(--coral-dark); }
+    @media (max-width: 840px) { .nav__links { display: none; } }
+
+    /* Article header */
+    .article-header { padding-block: 48px 28px; border-bottom: 1px solid var(--border); }
+    .article-header__back {
+      display: inline-block; font-size: 0.85rem; font-weight: 600;
+      color: var(--blue); margin-bottom: 18px;
+    }
+    .article-header__cat {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .article-header__title {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900; line-height: 1.2; color: var(--ink); margin-bottom: 14px;
+    }
+    .article-header__byline { font-size: 0.9rem; color: var(--ink-soft); }
+
+    /* Article body */
+    .article-body { padding-block: 40px 64px; }
+    .article-body p { font-size: 1.05rem; color: var(--ink-mid); margin-bottom: 22px; }
+    .article-body h2 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;
+      color: var(--ink); margin: 36px 0 16px;
+    }
+    .article-body h3 {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+      color: var(--ink); margin: 28px 0 12px;
+    }
+    .article-body ul, .article-body ol { margin: 0 0 22px 1.2em; color: var(--ink-mid); }
+    .article-body li { margin-bottom: 8px; font-size: 1.02rem; }
+    .article-body strong { color: var(--ink); }
+    .article-body blockquote {
+      border-left: 3px solid var(--blue); padding-left: 18px;
+      color: var(--ink-mid); font-style: italic; margin: 24px 0;
+    }
+
+    /* Footer */
+    .footer { background: var(--navy); color: rgba(255,255,255,0.65); padding-block: 40px; font-size: 0.85rem; }
+    .footer__inner {
+      width: min(1120px, 100%); margin-inline: auto; padding-inline: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer__brand { font-family: var(--font-display); font-weight: 800; color: #fff; font-size: 1rem; }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__link:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="../landing.html" class="nav__logo" aria-label="YourTurn2Intern home">
+        <img src="../brand_assets/YourTurn2Intern_LOGO.png" alt="YourTurn2Intern" />
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="../listing.html" class="nav__link">Opportunities</a>
+        <a href="../resources.html" class="nav__link nav__link--active">Resources</a>
+        <a href="#" class="nav__cta">Log In</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="article-header">
+    <div class="container">
+      <a href="../resources.html" class="article-header__back">&larr; Back to Resources</a>
+      <div class="article-header__cat">Nonprofits</div>
+      <h1 class="article-header__title">5 Long Island Nonprofits That Are Shaping Civic Life</h1>
+      <div class="article-header__byline">By Jeremy Fang</div>
+    </div>
+  </div>
+
+  <article class="article-body">
+    <div class="container">
+
+      <p>Long Island has a deep bench of nonprofit organizations working on the issues that shape daily life here: voting, housing, the environment, food access, and youth development. You don't have to look far to find one looking for help. Below are five common types of civic nonprofits you'll find across Nassau and Suffolk counties, along with what kind of intern work each one usually offers. Think of these as representative categories rather than a list of specific organizations. There are versions of each type in towns all across Long Island, and a quick search or a look at our Opportunities page will turn up the real ones currently hiring.</p>
+
+      <h2>1. Voter Engagement and Civic Education Groups</h2>
+      <p>Organizations like local voter engagement groups focus on registering new voters, explaining how to find your polling place, and breaking down ballot questions in plain language. Interns here often help run registration tables at schools or community events, design simple explainer materials, and support phone or text outreach before elections. It's a great fit if you're interested in how information (or the lack of it) shapes who actually shows up to vote.</p>
+
+      <h2>2. Housing Advocacy Organizations</h2>
+      <p>Groups focused on affordable housing and tenant protections work on issues like rent stability, eviction prevention, and zoning policy. All of it affects whether young people and working families can actually afford to stay on Long Island. Interns might help with case intake, attend public hearings and take notes, or assist with outreach campaigns explaining tenants' rights. This is meaningful work for students interested in law, policy, or social work.</p>
+
+      <h2>3. Long Island Sound and Environmental Conservation Groups</h2>
+      <p>Environmental nonprofits centered on protecting the Long Island Sound, local bays, and wetlands run cleanups, water testing programs, and public education campaigns. Interns often get involved in organizing volunteer cleanup days, helping with citizen science data collection, or supporting social media and outreach about local environmental issues. It's hands-on work, and a strong option for students who want a mix of outdoor activity and advocacy.</p>
+
+      <h2>4. Youth Civic Education Organizations</h2>
+      <p>Some nonprofits exist specifically to get younger people engaged in civic life, running mock elections, debate programs, or leadership workshops in local schools. Interning with one of these groups (sometimes as a near-peer, since you might not be much older than the students you're working with) can mean helping plan workshops, mentoring middle or high schoolers, or assisting with curriculum materials. It's especially useful if you're considering a future in education or youth work.</p>
+
+      <h2>5. Food Security and Community Support Nonprofits</h2>
+      <p>Food pantries and community support organizations address one of the most immediate needs in any community: making sure people have enough to eat. Interns commonly help sort and pack donations, support distribution days, help with intake paperwork, or assist with fundraising and donor outreach. The work is concrete and the impact is visible almost immediately. You'll often see the direct result of your effort within the same week.</p>
+
+      <p>Across all five types, the common thread is the same. These organizations run lean and rely heavily on volunteers and interns, which means they tend to hand real responsibility to anyone willing to show up and do the work. If one of these areas sounds interesting to you, check the Opportunities page for nonprofits currently looking for help near you.</p>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">YourTurn2Intern</div>
+      <div class="footer__links">
+        <a href="../listing.html" class="footer__link">Opportunities</a>
+        <a href="../resources.html" class="footer__link">Resources</a>
+        <a href="#" class="footer__link">Contact</a>
+      </div>
+      <div>© 2025 YourTurn2Intern. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
